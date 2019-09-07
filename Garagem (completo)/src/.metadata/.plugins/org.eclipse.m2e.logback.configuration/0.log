@@ -1,0 +1,16 @@
+2019-08-31 12:55:44,644 [Worker-1: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is out-of-date. Trying to update.
+2019-08-31 12:55:46,306 [Worker-1: Loading available Gradle versions] ERROR o.e.b.c.i.u.g.PublishedGradleVersions - Cannot write Gradle version information cache file.
+java.io.FileNotFoundException: C:\Users\marce\.tooling\gradle\versions.json (Acesso negado)
+	at java.base/java.io.FileOutputStream.open0(Native Method) ~[na:na]
+	at java.base/java.io.FileOutputStream.open(FileOutputStream.java:298) ~[na:na]
+	at java.base/java.io.FileOutputStream.<init>(FileOutputStream.java:237) ~[na:na]
+	at com.google.common.io.Files$FileByteSink.openStream(Files.java:201) ~[na:na]
+	at com.google.common.io.Files$FileByteSink.openStream(Files.java:189) ~[na:na]
+	at com.google.common.io.ByteSink$AsCharSink.openStream(ByteSink.java:151) ~[na:na]
+	at com.google.common.io.CharSource.copyTo(CharSource.java:215) ~[na:na]
+	at org.eclipse.buildship.core.internal.util.gradle.PublishedGradleVersions.storeCacheVersionsFile(PublishedGradleVersions.java:183) ~[na:na]
+	at org.eclipse.buildship.core.internal.util.gradle.PublishedGradleVersions.tryToDownloadAndCacheVersions(PublishedGradleVersions.java:149) ~[na:na]
+	at org.eclipse.buildship.core.internal.util.gradle.PublishedGradleVersions.tryToUpdateOutdatedVersionsFile(PublishedGradleVersions.java:132) ~[na:na]
+	at org.eclipse.buildship.core.internal.util.gradle.PublishedGradleVersions.create(PublishedGradleVersions.java:116) ~[na:na]
+	at org.eclipse.buildship.core.internal.util.gradle.PublishedGradleVersionsWrapper$LoadVersionsJob.run(PublishedGradleVersionsWrapper.java:62) ~[na:na]
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63) ~[org.eclipse.core.jobs_3.10.300.v20190215-2048.jar:na]
