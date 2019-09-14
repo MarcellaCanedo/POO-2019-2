@@ -11,7 +11,4 @@ public class Venda  {
     Funcionario funcionario;
     Cliente cliente;
 
-
-
-
 }

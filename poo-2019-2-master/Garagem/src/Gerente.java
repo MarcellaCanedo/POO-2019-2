@@ -1,12 +1,26 @@
+import java.util.Date;
+
 public class Gerente extends Funcionario implements IFuncionario {
 
-    private String matricula;
+    private String departamento;
     private float salario;
+    private String matricula;
 
-    Gerente(){};
+    public String getDepartamento() {
+        return departamento;
+    }
 
-    public Gerente(String matricula, float salario) {
-        this.matricula = matricula;
+    public void setDepartamento(String departamento) {
+        this.departamento = departamento;
+    }
+
+    @Override
+    public float getSalario() {
+        return salario;
+    }
+
+    @Override
+    public void setSalario(float salario) {
         this.salario = salario;
     }
 
@@ -18,15 +32,18 @@ public class Gerente extends Funcionario implements IFuncionario {
         this.matricula = matricula;
     }
 
-    public float getSalario() {
-        return salario;
+    public float calculaSalario() {
+        return salario * 1.5f;
     }
 
-    public void setSalario(float salario) {
-        this.salario = salario;
-    }
-
-    public float calcularSalario() {
-        return this.salario * 1.5f;
+    public void mapFuncionarioToGerente(Funcionario func){
+        this.setNome(func.getNome());
+        this.setTelefone(func.getTelefone());
+        this.setCpf(func.getCpf());
+        this.setEndereco(func.getEndereco());
+        this.setDt_nascimento(func.getDt_nascimento());
+        this.setCodigo(func.getCodigo());
+        this.setUsuario(func.getUsuario());
+        this.setSenha(func.getSenha());
     }
 }
