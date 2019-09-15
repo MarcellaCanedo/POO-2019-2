@@ -16,6 +16,7 @@ public class Principal {
         System.out.println(f.calcularSalario());
     }
 
+
     public static void main(String args[]) {
         System.out.println("Garagem Tabajara!");
 
@@ -29,7 +30,6 @@ public class Principal {
         principal.calcularSalarioGenerico(badeco);
         principal.calcularSalarioGenerico(funcionario);
         principal.menuPrincipal();
-
     }
 
     public void menuPrincipal() {
@@ -116,7 +116,7 @@ public class Principal {
         tipoFuncionario = fsc.nextInt();
 
         if (tipoFuncionario != 1 && tipoFuncionario != 2 && tipoFuncionario != 3) {
-            System.out.println(" FuncionÃ¡rio ainda nÃ£o existente!!!");
+            System.out.println(" Funcionário ainda não existente!!!");
             cadastrarFuncionario();
         } else {
             System.out.println("> Informe o nome: ");
@@ -188,7 +188,7 @@ public class Principal {
     public void listarFuncionario() {
         System.out.println("#Lista de funcionarios");
         for (Funcionario f : listaFuncionarios) {
-            System.out.println(f.getCodigo() + " | " + f.getNome() + " | " + f.getCpf() + " | " + f.getUsuario());
+            System.out.println(f.getCodigo() + " | " + f.getNome() + " | " + f.getCpf() + " | " + f.getUsuario() + " | " + f.calcularSalario());
         }
     }
 
@@ -522,14 +522,12 @@ public class Principal {
                     System.out.println("> Informaçao Invalida!!!");
                 }
             }
-
             System.out.println("> Informe o codigo do funcionrio: ");
             int busca3 = sc.nextInt();
-
             for (Funcionario f : listaFuncionarios) {
                 if (f.getCodigo() == busca3 && f.getCodigo() < 127 && f.getCodigo() > -128) {
                     System.out.println("Codigo: " + f.getCodigo());
-                } else {
+                }else {
                     System.out.println("> Informaçao Invalida!!!");
                 }
             }

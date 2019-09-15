@@ -15,26 +15,16 @@ public class Gerente extends Funcionario implements IFuncionario {
     }
 
     @Override
-    public float getSalario() {
-        return salario;
-    }
+    public float getSalario() { return salario; }
 
     @Override
-    public void setSalario(float salario) {
-        this.salario = salario;
-    }
+    public void setSalario(float salario) { this.salario = salario; }
 
-    public String getMatricula() {
-        return matricula;
-    }
+    public String getMatricula() { return matricula; }
 
-    public void setMatricula(String matricula) {
-        this.matricula = matricula;
-    }
+    public void setMatricula(String matricula) { this.matricula = matricula; }
 
-    public float calculaSalario() {
-        return salario * 1.5f;
-    }
+    public float calcularSalario() { return salario * 1.5f; }
 
     public void mapFuncionarioToGerente(Funcionario func){
         this.setNome(func.getNome());
