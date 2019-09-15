@@ -26,9 +26,9 @@ public class Principal {
 
         Principal principal = new Principal();
 
-        principal.calcularSalarioGenerico(gerente);
+        /*principal.calcularSalarioGenerico(gerente);
         principal.calcularSalarioGenerico(badeco);
-        principal.calcularSalarioGenerico(funcionario);
+        principal.calcularSalarioGenerico(funcionario);*/
         principal.menuPrincipal();
     }
 
@@ -488,7 +488,7 @@ public class Principal {
         System.out.println("01- Realizar Venda"); //Como se fosse um cadastro de vendas
         System.out.println("02- Cancelar Venda");
         System.out.println("03- Listar Vendas"); //Listagem de todas as vendas realizadas
-        System.out.println("00- Sair");
+        System.out.println("00- Voltar");
 
         Scanner sc = new Scanner(System.in);
         int op = sc.nextInt();
@@ -503,10 +503,12 @@ public class Principal {
             case 3:
                 listarVenda();
             case 0:
+                menuVenda();
             default:
                 System.exit(0);
                 break;
         }
+        menuVenda();
     }
 
     public void realizarVenda() {
@@ -514,6 +516,8 @@ public class Principal {
         System.out.println("# Busca de dados para realizar Venda");
         System.out.println("> Informe a placa do Veiculo: ");
         String busca1 = sc.nextLine();
+
+        float comissao = 0;
 
         //Verificar os dados para cadastrar uma venda
 
@@ -546,8 +550,12 @@ public class Principal {
                     menuVenda();
                 }
             }
+            System.out.println("#Valor do veiculo vendido: ");
+            System.out.println(a.getValor());
+            System.out.println("> Comissao recebida: ");
+            comissao = comissao + (a.getValor()/25);
+            System.out.println(comissao);
         }
-
     }
 
     public void listarVenda(){
