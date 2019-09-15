@@ -388,6 +388,7 @@ public class Principal {
 
     public void cadastrarAutomovel() {
 
+        Scanner fsc = new Scanner(System.in);
         Scanner sc = new Scanner(System.in);
         Automovel automovel = new Automovel();
 
@@ -406,16 +407,16 @@ public class Principal {
         automovel.setCor(sc.nextLine());
 
         System.out.println("> Informe o chassi: ");
-        automovel.setChassi(sc.nextLine());
+        automovel.setChassi(fsc.nextLine());
 
         System.out.println("> Informe a placa: ");
-        automovel.setPlaca(sc.nextLine());
+        automovel.setPlaca(fsc.nextLine());
 
         System.out.println("> Informe o KM: ");
-        automovel.setKm(sc.nextInt());
+        automovel.setKm(fsc.nextInt());
 
         System.out.println("> Informe o valor: ");
-        automovel.setValor(sc.nextInt());
+        automovel.setValor(fsc.nextInt());
 
         try {
             System.out.print("> Informe o ano de fabricao: ");
@@ -521,6 +522,7 @@ public class Principal {
                 System.out.println("Placa: " + a.getPlaca());
             } else {
                 System.out.println("> Informaçao Invalida!!!");
+                menuVenda();
             }
 
             System.out.println("> Informe o Codigo do cliente: ");
@@ -550,8 +552,5 @@ public class Principal {
 
     public void listarVenda(){
 
-
-
     }
-
 }
