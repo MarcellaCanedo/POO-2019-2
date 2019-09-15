@@ -25,9 +25,9 @@ public class Principal {
 
         Principal principal = new Principal();
 
-        // principal.calcularSalarioGenerico(gerente);
-        //principal.calcularSalarioGenerico(badeco);
-        //principal.calcularSalarioGenerico(funcionario);
+        principal.calcularSalarioGenerico(gerente);
+        principal.calcularSalarioGenerico(badeco);
+        principal.calcularSalarioGenerico(funcionario);
         principal.menuPrincipal();
 
     }
@@ -55,7 +55,7 @@ public class Principal {
                 menuAutomovel();
                 break;
             case 4:
-                menuVenda();
+                //menuVenda();
                 break;
             case 0:
             default:
@@ -112,11 +112,11 @@ public class Principal {
         Funcionario funcionario = new Funcionario();
 
         System.out.println("# Cadastro de funcionario ");
-        System.out.println("# Escolha o tipo de funcionÃ¡rio: [01 - Gerente,  02 - Funcionario Normal,  03 - Badeco]");
+        System.out.println("# Escolha o tipo de funcionário: [01 - Gerente,  02 - Funcionario Normal,  03 - Badeco]");
         tipoFuncionario = fsc.nextInt();
 
         if(tipoFuncionario != 1 && tipoFuncionario!= 2 && tipoFuncionario != 3){
-            System.out.println(" FuncionÃ¡rio ainda nÃ£o existÃªnte!!!");
+            System.out.println(" FuncionÃ¡rio ainda nÃ£o existente!!!");
             cadastrarFuncionario();
         }else{
             System.out.println("> Informe o nome: ");
@@ -125,7 +125,7 @@ public class Principal {
             System.out.println("> Informe o cpf: ");
             funcionario.setCpf(sc.nextLine());
 
-            System.out.println("> Informe o endereÃ§o: ");
+            System.out.println("> Informe o endereço: ");
             funcionario.setEndereco(sc.nextLine());
 
             System.out.println("> Informe o telefone: ");
@@ -204,12 +204,12 @@ public class Principal {
                 System.out.println("CPF: " + f.getCpf());
                 System.out.println("Telefone: " + f.getTelefone());
                 System.out.println("Data de nascimento: " + f.getDt_nascimento());
-                System.out.println("CÃ³digo: " + f.getCodigo());
-                System.out.println("UsuÃ¡rio: " + f.getUsuario());
+                System.out.println("Código: " + f.getCodigo());
+                System.out.println("Usuárioo: " + f.getUsuario());
                 System.out.println("Senha: " + f.getSenha());
-                System.out.println("SalÃ¡rio: " + f.calcularSalario());
+                System.out.println("Salário: " + f.calcularSalario());
             }else{
-                System.out.println("> Registro nÃ£o encontrado!!!");
+                System.out.println("> Registro não encontrado!!!");
             }
         }
     }
@@ -217,7 +217,7 @@ public class Principal {
     public void excluirFuncionario() {
         Scanner sc = new Scanner(System.in);
         System.out.println("# Busca de funcionario");
-        System.out.println("> Informe o cÃ³digo do funcionÃ¡rio");
+        System.out.println("> Informe o código do funcionário");
         int codigoFuncionario = sc.nextInt();
 
         List<Funcionario> listaParaRemover = new ArrayList<>();
@@ -226,13 +226,13 @@ public class Principal {
             if (f.getCodigo() == codigoFuncionario) {
                 listaParaRemover.add(f);
             } else {
-                System.out.println("> Funcionario nÃ£o encontrado!!!");
+                System.out.println("> Funcionario não encontrado!!!");
             }
         }
 
         listaFuncionarios.removeAll(listaParaRemover);
 
-        System.out.println("> ExclusÃ£o realizada com sucesso!!!");
+        System.out.println("> Exclusão realizada com sucesso!!!");
     }
 
     public void menuCliente() {
@@ -276,7 +276,7 @@ public class Principal {
 
         Cliente cliente = new Cliente();
         Scanner sc = new Scanner(System.in);
-        Scanner fsc = new Scanner (System.in);
+        /*Scanner fsc = new Scanner (System.in);*/
 
         System.out.println("# Cadastro de Cliente ");
 
@@ -286,7 +286,7 @@ public class Principal {
         System.out.println("> Informe o cpf: ");
         cliente.setCpf(sc.nextLine());
 
-        System.out.println("> Informe o endereÃ§o: ");
+        System.out.println("> Informe o endereço: ");
         cliente.setEndereco(sc.nextLine());
 
         System.out.println("> Informe o telefone: ");
@@ -392,33 +392,32 @@ public class Principal {
         Automovel automovel = new Automovel();
 
         System.out.println("# Cadastro de Automovel ");
+        System.out.println("> Informe o Modelo: ");
+        automovel.setNome_modelo(sc.nextLine());
 
-        System.out.println("> Informe o nome da marca: ");
-        automovel.nome = sc.nextLine();
-
-        System.out.println("> Informe o tipo: ");
-        automovel.tipo = sc.nextLine();
+        System.out.println("> Informe o tipo do automóvel (Carro, caminhão, moto, barco): ");
+        automovel.setTipo(sc.nextLine());
 
         System.out.println("> Informe a cor: ");
-        automovel.cor = sc.nextLine();
+        automovel.setCor(sc.nextLine());
 
         System.out.println("> Informe o chassi: ");
-        automovel.chassi = sc.nextLine();
+        automovel.setChassi(sc.nextLine());
 
         System.out.println("> Informe a placa: ");
-        automovel.placa = sc.nextLine();
+        automovel.setPlaca(sc.nextLine());
 
         System.out.println("> Informe o KM: ");
-        automovel.km = sc.nextLine();
+        automovel.setKm(sc.nextInt());
 
         System.out.println("> Informe o valor: ");
-        automovel.valor = sc.nextLine();
+        automovel.setValor(sc.nextInt());
 
         try {
             System.out.print("> Informe o ano de fabricao: ");
             String data = sc.nextLine();
             Date dt = new SimpleDateFormat("yyyy").parse(data);
-            automovel.ano_fab = dt;
+            automovel.setAno_fab(dt);
         } catch (ParseException e) {
             System.out.println(e.getMessage());
         }
@@ -427,7 +426,7 @@ public class Principal {
             System.out.print("> Informe o ano do modelo: ");
             String data = sc.nextLine();
             Date dt = new SimpleDateFormat("yyyy").parse(data);
-            automovel.ano_modelo = dt;
+            automovel.setAno_modelo(dt);
         } catch (ParseException e) {
             System.out.println(e.getMessage());
         }
@@ -438,22 +437,21 @@ public class Principal {
 
         System.out.println("#Lista de Automoveis");
         for (Automovel a : listaAutomoveis) {
-            System.out.println(a.nome + " | " + a.tipo + " | " + a.placa + " | " + a.chassi);
+            System.out.println(a.getNome_modelo() + " | " + a.getTipo() + " | " + a.getPlaca() + " | " + a.getChassi());
         }
-
     }
 
     public void buscarAutomovel() {
 
         Scanner sc = new Scanner(System.in);
-        System.out.println("# Busca de AutomÃ³vel");
+        System.out.println("# Busca de Automóvel");
         String busca = sc.nextLine();
         for (Automovel a : listaAutomoveis) {
-            if (a.chassi.equals(busca)) {
-                System.out.println("Marca: " + a.nome);
-                System.out.println("Tipo: " + a.tipo);
-                System.out.println("Placa: " + a.placa);
-                System.out.println("Chassi: " + a.chassi);
+            if (a.getChassi().equals(busca)) {
+                System.out.println("Marca: " + a.getNome_Marca());
+                System.out.println("Tipo: " + a.getTipo());
+                System.out.println("Placa: " + a.getPlaca());
+                System.out.println("Chassi: " + a.getChassi());
             }
         }
     }
@@ -467,7 +465,7 @@ public class Principal {
         List<Automovel> listaParaRemover = new ArrayList<>();
 
         for (Automovel a : listaAutomoveis) {
-            if (a.chassi.equals(busca)) {
+            if (a.getChassi().equals(busca)) {
                 listaParaRemover.add(a);
                 System.out.println("> Exclusão realizada com sucesso!!!");
             } else {
@@ -477,7 +475,7 @@ public class Principal {
         listaAutomoveis.removeAll(listaParaRemover);
     }
 
-    public void menuVenda() {
+    /*public void menuVenda() {
 
         System.out.println("#Menu Vendas");
         System.out.println("01- Realizar Venda");
@@ -489,7 +487,7 @@ public class Principal {
 
         switch (op) {
             case 1:
-                realizarVenda();
+                //realizarVenda();
                 break;
             case 2:
                 //cancelarVenda();
@@ -532,7 +530,5 @@ public class Principal {
                     System.out.println("> Informaçao Invalida!!!");
                 }
             }
-        }
+        }*/
     }
-
-}

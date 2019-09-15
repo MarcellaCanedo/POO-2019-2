@@ -56,6 +56,6 @@ public class Funcionario extends Pessoa implements IFuncionario{
         this.setDt_nascimento(funcionario.getDt_nascimento());
         this.setCodigo(funcionario.getCodigo());
         this.setUsuario(funcionario.getUsuario());
-        this.setSenha(funcionario.getSenha());]
+        this.setSenha(funcionario.getSenha());
     }
 }
