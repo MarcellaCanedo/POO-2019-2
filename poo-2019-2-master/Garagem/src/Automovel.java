@@ -12,19 +12,19 @@ public class Automovel extends Modelo {
 
     public String getCor() { return cor; }
 
-    public void setCor(String cor) { this.cor = cor; }
-
     public String getChassi() { return chassi; }
 
-    public void setChassi(String chassi) { this.chassi = chassi; }
+    public void setCor(String cor) { this.cor = cor; }
 
     public String getPlaca() { return placa; }
 
+    public void setChassi(String chassi) { this.chassi = chassi; }
+
     public void setPlaca(String placa) { this.placa = placa; }
 
-    public float getKm() { return km; }
-
     public void setKm(float km) { this.km = km; }
+
+    public float getKm() { return km; }
 
     public float getValor() { return valor; }
 

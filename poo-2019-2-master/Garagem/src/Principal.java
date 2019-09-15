@@ -55,7 +55,7 @@ public class Principal {
                 menuAutomovel();
                 break;
             case 4:
-                //menuVenda();
+                menuVenda();
                 break;
             case 0:
             default:
@@ -115,10 +115,10 @@ public class Principal {
         System.out.println("# Escolha o tipo de funcionário: [01 - Gerente,  02 - Funcionario Normal,  03 - Badeco]");
         tipoFuncionario = fsc.nextInt();
 
-        if(tipoFuncionario != 1 && tipoFuncionario!= 2 && tipoFuncionario != 3){
+        if (tipoFuncionario != 1 && tipoFuncionario != 2 && tipoFuncionario != 3) {
             System.out.println(" FuncionÃ¡rio ainda nÃ£o existente!!!");
             cadastrarFuncionario();
-        }else{
+        } else {
             System.out.println("> Informe o nome: ");
             funcionario.setNome(sc.nextLine());
 
@@ -149,7 +149,7 @@ public class Principal {
             System.out.println("> Informe a senha: ");
             funcionario.setSenha(sc.nextLine());
 
-            if(tipoFuncionario == 1){
+            if (tipoFuncionario == 1) {
                 Gerente gerente = new Gerente();
 
                 gerente.mapFuncionarioToGerente(funcionario);
@@ -165,8 +165,7 @@ public class Principal {
 
                 funcionario = gerente;
 
-            }else if(tipoFuncionario == 3)
-            {
+            } else if (tipoFuncionario == 3) {
                 Badeco badeco = new Badeco();
                 badeco.mapFuncionarioToBadeco(funcionario);
 
@@ -177,7 +176,7 @@ public class Principal {
                 badeco.setSalario(fsc.nextFloat());
 
                 funcionario = badeco;
-            }else{
+            } else {
                 System.out.println("> Informe o salario: ");
                 funcionario.setSalario(fsc.nextFloat());
             }
@@ -208,7 +207,7 @@ public class Principal {
                 System.out.println("Usuárioo: " + f.getUsuario());
                 System.out.println("Senha: " + f.getSenha());
                 System.out.println("Salário: " + f.calcularSalario());
-            }else{
+            } else {
                 System.out.println("> Registro não encontrado!!!");
             }
         }
@@ -452,6 +451,8 @@ public class Principal {
                 System.out.println("Tipo: " + a.getTipo());
                 System.out.println("Placa: " + a.getPlaca());
                 System.out.println("Chassi: " + a.getChassi());
+                System.out.println("Valor: " + a.getValor());
+                System.out.println("Quilometragem: " + a.getKm());
             }
         }
     }
@@ -475,7 +476,7 @@ public class Principal {
         listaAutomoveis.removeAll(listaParaRemover);
     }
 
-    /*public void menuVenda() {
+    public void menuVenda() {
 
         System.out.println("#Menu Vendas");
         System.out.println("01- Realizar Venda");
@@ -487,7 +488,7 @@ public class Principal {
 
         switch (op) {
             case 1:
-                //realizarVenda();
+                realizarVenda();
                 break;
             case 2:
                 //cancelarVenda();
@@ -506,8 +507,8 @@ public class Principal {
         String busca1 = sc.nextLine();
 
         for (Automovel a : listaAutomoveis) {
-            if (a.placa.equals(busca1)) {
-                System.out.println("Placa: " + a.placa);
+            if (a.getPlaca().equals(busca1)) {
+                System.out.println("Placa: " + a.getPlaca());
             } else {
                 System.out.println("> Informaçao Invalida!!!");
             }
@@ -515,20 +516,23 @@ public class Principal {
             int busca2 = sc.nextInt();
 
             for (Cliente c : listaClientes) {
-                if (c.getCodigo() == busca2) {
-                    System.out.println("Codigo: " + c.codigo);
+                if (c.getCodigo() == busca2 && c.getCodigo() < 127 && c.getCodigo() > -128) {
+                    System.out.println("Codigo: " + c.getCodigo());
                 } else {
                     System.out.println("> Informaçao Invalida!!!");
                 }
             }
+
+            System.out.println("> Informe o codigo do funcionrio: ");
             int busca3 = sc.nextInt();
-            System.out.println("> Informe o codigo do funcioÃ¡rio: ");
+
             for (Funcionario f : listaFuncionarios) {
-                if (f.codigo == busca3) {
-                    System.out.println("Codigo: " + f.codigo);
+                if (f.getCodigo() == busca3 && f.getCodigo() < 127 && f.getCodigo() > -128) {
+                    System.out.println("Codigo: " + f.getCodigo());
                 } else {
                     System.out.println("> Informaçao Invalida!!!");
                 }
             }
-        }*/
+        }
     }
+}
