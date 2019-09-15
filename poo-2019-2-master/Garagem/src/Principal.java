@@ -25,9 +25,9 @@ public class Principal {
 
         Principal principal = new Principal();
 
-        principal.calcularSalarioGenerico(gerente);
-        principal.calcularSalarioGenerico(badeco);
-        principal.calcularSalarioGenerico(funcionario);
+        // principal.calcularSalarioGenerico(gerente);
+        //principal.calcularSalarioGenerico(badeco);
+        //principal.calcularSalarioGenerico(funcionario);
         principal.menuPrincipal();
 
     }
@@ -85,6 +85,7 @@ public class Principal {
                 cadastrarFuncionario();
                 break;
             case 3:
+                /*Alterar implementação futura*/
                 break;
             case 4:
                 buscarFuncionario();
@@ -111,11 +112,11 @@ public class Principal {
         Funcionario funcionario = new Funcionario();
 
         System.out.println("# Cadastro de funcionario ");
-        System.out.println("# Escolha o tipo de funcionário: [01 - Gerente,  02 - Funcionario Normal,  03 - Badeco]");
+        System.out.println("# Escolha o tipo de funcionÃ¡rio: [01 - Gerente,  02 - Funcionario Normal,  03 - Badeco]");
         tipoFuncionario = fsc.nextInt();
 
         if(tipoFuncionario != 1 && tipoFuncionario!= 2 && tipoFuncionario != 3){
-            System.out.println(" Funcionário ainda não existênte!!!");
+            System.out.println(" FuncionÃ¡rio ainda nÃ£o existÃªnte!!!");
             cadastrarFuncionario();
         }else{
             System.out.println("> Informe o nome: ");
@@ -124,7 +125,7 @@ public class Principal {
             System.out.println("> Informe o cpf: ");
             funcionario.setCpf(sc.nextLine());
 
-            System.out.println("> Informe o endereço: ");
+            System.out.println("> Informe o endereÃ§o: ");
             funcionario.setEndereco(sc.nextLine());
 
             System.out.println("> Informe o telefone: ");
@@ -140,7 +141,7 @@ public class Principal {
             }
 
             System.out.println("> Informe o codigo: ");
-            funcionario.setCodigo(fsc.nextLine());
+            funcionario.setCodigo(fsc.nextInt());
 
             System.out.println("> Informe o usuario: ");
             funcionario.setUsuario(sc.nextLine());
@@ -177,45 +178,46 @@ public class Principal {
 
                 funcionario = badeco;
             }else{
-            System.out.println("> Informe o salario: ");
-            funcionario.setSalario(fsc.nextFloat());
-        }
+                System.out.println("> Informe o salario: ");
+                funcionario.setSalario(fsc.nextFloat());
+            }
 
-        listaFuncionarios.add(funcionario);
+            listaFuncionarios.add(funcionario);
+        }
     }
 
-    /*PRONTO*/public void listarFuncionario() {
+    public void listarFuncionario() {
         System.out.println("#Lista de funcionarios");
         for (Funcionario f : listaFuncionarios) {
             System.out.println(f.getCodigo() + " | " + f.getNome() + " | " + f.getCpf() + " | " + f.getUsuario());
         }
     }
 
-    /*PRONTO*/public void buscarFuncionario() {
+    public void buscarFuncionario() {
         Scanner sc = new Scanner(System.in);
         System.out.println("# Busca de funcionario");
         System.out.println("# Informe o código do Funcionario");
-        int codigoFuncao = sc.nextLine();
+        int codigoFuncao = sc.nextInt();
         for (Funcionario f : listaFuncionarios) {
             if (f.getCodigo() == codigoFuncao) {
                 System.out.println("Nome: " + f.getNome());
                 System.out.println("CPF: " + f.getCpf());
                 System.out.println("Telefone: " + f.getTelefone());
                 System.out.println("Data de nascimento: " + f.getDt_nascimento());
-                System.out.println("Código: " + f.getCodigo());
-                System.out.println("Usuário: " + f.getUsuario());
+                System.out.println("CÃ³digo: " + f.getCodigo());
+                System.out.println("UsuÃ¡rio: " + f.getUsuario());
                 System.out.println("Senha: " + f.getSenha());
-                System.out.println("Salário: " + f.calcularSalario());
+                System.out.println("SalÃ¡rio: " + f.calcularSalario());
             }else{
-                System.out.println("> Registro não encontrado!!!");
+                System.out.println("> Registro nÃ£o encontrado!!!");
             }
         }
     }
 
-    /*PRONTO*/public void excluirFuncionario() {
+    public void excluirFuncionario() {
         Scanner sc = new Scanner(System.in);
         System.out.println("# Busca de funcionario");
-        System.out.println("> Informe o código do funcionário");
+        System.out.println("> Informe o cÃ³digo do funcionÃ¡rio");
         int codigoFuncionario = sc.nextInt();
 
         List<Funcionario> listaParaRemover = new ArrayList<>();
@@ -224,16 +226,16 @@ public class Principal {
             if (f.getCodigo() == codigoFuncionario) {
                 listaParaRemover.add(f);
             } else {
-                System.out.println("> Funcionario não encontrado!!!");
+                System.out.println("> Funcionario nÃ£o encontrado!!!");
             }
         }
 
         listaFuncionarios.removeAll(listaParaRemover);
 
-        System.out.println("> Exclusão realizada com sucesso!!!");
+        System.out.println("> ExclusÃ£o realizada com sucesso!!!");
     }
 
-    /*PRONTO*/public void menuCliente() {
+    public void menuCliente() {
 
         System.out.println("#Menu Cliente");
         System.out.println("01- Listar");
@@ -270,7 +272,7 @@ public class Principal {
         menuCliente();
     }
 
-    /*PRONTO*/public void cadastrarCliente() {
+    public void cadastrarCliente() {
 
         Cliente cliente = new Cliente();
         Scanner sc = new Scanner(System.in);
@@ -284,7 +286,7 @@ public class Principal {
         System.out.println("> Informe o cpf: ");
         cliente.setCpf(sc.nextLine());
 
-        System.out.println("> Informe o endereço: ");
+        System.out.println("> Informe o endereÃ§o: ");
         cliente.setEndereco(sc.nextLine());
 
         System.out.println("> Informe o telefone: ");
@@ -300,7 +302,7 @@ public class Principal {
         }
 
         System.out.println("> Informe o codigo: ");
-        cliente.setCodigo(sc.nextLine());
+        cliente.setCodigo(sc.nextInt());
         listaClientes.add(cliente);
     }
 
@@ -308,7 +310,7 @@ public class Principal {
 
         System.out.println("#Lista de Clientes");
         for (Cliente c : listaClientes) {
-            System.out.println(c.codigo + " | " + c.nome + " | " + c.cpf);
+            System.out.println(c.getCodigo() + " | " + c.getNome() + " | " + c.getCpf());
         }
 
     }
@@ -319,12 +321,14 @@ public class Principal {
         System.out.println("# Busca de Cliente");
         String busca = sc.nextLine();
         for (Cliente c : listaClientes) {
-            if (c.nome.equals(busca)) {
-                System.out.println("Nome: " + c.nome);
-                System.out.println("CPF: " + c.cpf);
+            if (c.getNome() == (busca)) {
+                System.out.println("Nome: " + c.getNome());
+                System.out.println("CPF: " + c.getCpf());
+                System.out.println("Endereço: " + c.getEndereco());
+                System.out.println("Telefone: " + c.getTelefone());
+                System.out.println("Codigo: " + c.getCodigo());
             }
         }
-
     }
 
     public void excluirCliente() {
@@ -336,19 +340,19 @@ public class Principal {
         List<Cliente> listaParaRemover = new ArrayList<>();
 
         for (Cliente c : listaClientes) {
-            if (c.nome.equals(busca)) {
+            if (c.getNome().equals(busca)) {
                 listaParaRemover.add(c);
             } else {
-                System.out.println("> Cliente não encontrado!!!");
+                System.out.println("> Cliente nao encontrado!!!");
             }
         }
         listaClientes.removeAll(listaParaRemover);
-        System.out.println("> Exclusão realizada com sucesso!!!");
+        System.out.println("> Exclusao realizada com sucesso!!!");
     }
 
     public void menuAutomovel() {
 
-        System.out.println("#Menu Automóvel");
+        System.out.println("#Menu Automovel");
         System.out.println("01- Listar");
         System.out.println("02- Cadastrar");
         System.out.println("03- Alterar");
@@ -411,7 +415,7 @@ public class Principal {
         automovel.valor = sc.nextLine();
 
         try {
-            System.out.print("> Informe o ano de fabricação: ");
+            System.out.print("> Informe o ano de fabricao: ");
             String data = sc.nextLine();
             Date dt = new SimpleDateFormat("yyyy").parse(data);
             automovel.ano_fab = dt;
@@ -442,7 +446,7 @@ public class Principal {
     public void buscarAutomovel() {
 
         Scanner sc = new Scanner(System.in);
-        System.out.println("# Busca de Automóvel");
+        System.out.println("# Busca de AutomÃ³vel");
         String busca = sc.nextLine();
         for (Automovel a : listaAutomoveis) {
             if (a.chassi.equals(busca)) {
@@ -498,36 +502,34 @@ public class Principal {
     }
 
     public void realizarVenda() {
-        /*Deverá ser informado a placa do veículo, o código do cliente e o código do funcionário para iniciar a
-venda, caso esas informações sejam válida (os dados informados existem) o sistema deve soliciar as
-demais informações para realizar a venda.*/
-
         Scanner sc = new Scanner(System.in);
         System.out.println("# Busca de dados para realizar Venda");
-        System.out.println("> Informe a placa do Veículo: ");
+        System.out.println("> Informe a placa do Veiculo: ");
         String busca1 = sc.nextLine();
+
         for (Automovel a : listaAutomoveis) {
             if (a.placa.equals(busca1)) {
                 System.out.println("Placa: " + a.placa);
             } else {
-                System.out.println("> Informação Inválida!!!");
+                System.out.println("> Informaçao Invalida!!!");
             }
-            System.out.println("> Informe o Código do cliente: ");
-            String busca2 = sc.nextLine();
+            System.out.println("> Informe o Codigo do cliente: ");
+            int busca2 = sc.nextInt();
+
             for (Cliente c : listaClientes) {
-                if (c.codigo.equals(busca2)) {
-                    System.out.println("Código: " + c.codigo);
+                if (c.getCodigo() == busca2) {
+                    System.out.println("Codigo: " + c.codigo);
                 } else {
-                    System.out.println("> Informação Inválida!!!");
+                    System.out.println("> Informaçao Invalida!!!");
                 }
             }
-            String busca3 = sc.nextLine();
-            System.out.println("> Informe o código do funcioário: ");
+            int busca3 = sc.nextInt();
+            System.out.println("> Informe o codigo do funcioÃ¡rio: ");
             for (Funcionario f : listaFuncionarios) {
-                if (f.codigo.equals(busca3)) {
-                    System.out.println("Código: " + f.codigo);
+                if (f.codigo == busca3) {
+                    System.out.println("Codigo: " + f.codigo);
                 } else {
-                    System.out.println("> Informação Inválida!!!");
+                    System.out.println("> Informaçao Invalida!!!");
                 }
             }
         }
