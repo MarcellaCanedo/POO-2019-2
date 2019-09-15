@@ -188,7 +188,8 @@ public class Principal {
     public void listarFuncionario() {
         System.out.println("#Lista de funcionarios");
         for (Funcionario f : listaFuncionarios) {
-            System.out.println(f.getCodigo() + " | " + f.getNome() + " | " + f.getCpf() + " | " + f.getUsuario() + " | " + f.calcularSalario());
+            System.out.println("Código: " + f.getCodigo() + " | " + "Nome: " + f.getNome() + " | " + "CPF: " + f.getCpf() +
+                    " | " + "Usuário: " + f.getUsuario() + " | " + "Salário com ajuste: "+ f.calcularSalario());
         }
     }
 
@@ -309,9 +310,9 @@ public class Principal {
 
         System.out.println("#Lista de Clientes");
         for (Cliente c : listaClientes) {
-            System.out.println(c.getCodigo() + " | " + c.getNome() + " | " + c.getCpf());
+            System.out.println("Código: " + c.getCodigo() + " | " + "Nome: " + c.getNome() + " | "
+                    + "CPF: " + c.getCpf() + " | " + "Telefone: " + c.getTelefone());
         }
-
     }
 
     public void buscarCliente() {
@@ -391,11 +392,15 @@ public class Principal {
         Automovel automovel = new Automovel();
 
         System.out.println("# Cadastro de Automovel ");
-        System.out.println("> Informe o Modelo: ");
-        automovel.setNome_modelo(sc.nextLine());
 
         System.out.println("> Informe o tipo do automóvel (Carro, caminhão, moto, barco): ");
         automovel.setTipo(sc.nextLine());
+
+        System.out.println("> Informe o Modelo: ");
+        automovel.setNome_modelo(sc.nextLine());
+
+        System.out.println("> Informe a Marca: ");
+        automovel.setNome_Marca(sc.nextLine());
 
         System.out.println("> Informe a cor: ");
         automovel.setCor(sc.nextLine());
@@ -433,10 +438,10 @@ public class Principal {
     }
 
     public void listarAutomovel() {
-
         System.out.println("#Lista de Automoveis");
         for (Automovel a : listaAutomoveis) {
-            System.out.println(a.getNome_modelo() + " | " + a.getTipo() + " | " + a.getPlaca() + " | " + a.getChassi());
+            System.out.println(a.getTipo() + "|" + a.getNome_modelo() + "|" + a.getNome_Marca() +
+                  " | " + a.getCor() + " | " + a.getPlaca() + " | " + a.getChassi() + "|" + a.getValor());
         }
     }
 
@@ -479,8 +484,9 @@ public class Principal {
     public void menuVenda() {
 
         System.out.println("#Menu Vendas");
-        System.out.println("01- Realizar Venda");
+        System.out.println("01- Realizar Venda"); //Como se fosse um cadastro de vendas
         System.out.println("02- Cancelar Venda");
+        System.out.println("03- Listar Vendas"); //Listagem de todas as vendas realizadas
         System.out.println("00- Sair");
 
         Scanner sc = new Scanner(System.in);
@@ -493,6 +499,8 @@ public class Principal {
             case 2:
                 //cancelarVenda();
                 break;
+            case 3:
+                listarVenda();
             case 0:
             default:
                 System.exit(0);
@@ -506,22 +514,26 @@ public class Principal {
         System.out.println("> Informe a placa do Veiculo: ");
         String busca1 = sc.nextLine();
 
+        //Verificar os dados para cadastrar uma venda
+
         for (Automovel a : listaAutomoveis) {
             if (a.getPlaca().equals(busca1)) {
                 System.out.println("Placa: " + a.getPlaca());
             } else {
                 System.out.println("> Informaçao Invalida!!!");
             }
+
             System.out.println("> Informe o Codigo do cliente: ");
             int busca2 = sc.nextInt();
-
             for (Cliente c : listaClientes) {
                 if (c.getCodigo() == busca2 && c.getCodigo() < 127 && c.getCodigo() > -128) {
                     System.out.println("Codigo: " + c.getCodigo());
                 } else {
                     System.out.println("> Informaçao Invalida!!!");
+                    menuVenda();
                 }
             }
+
             System.out.println("> Informe o codigo do funcionrio: ");
             int busca3 = sc.nextInt();
             for (Funcionario f : listaFuncionarios) {
@@ -529,8 +541,17 @@ public class Principal {
                     System.out.println("Codigo: " + f.getCodigo());
                 }else {
                     System.out.println("> Informaçao Invalida!!!");
+                    menuVenda();
                 }
             }
         }
+
     }
+
+    public void listarVenda(){
+
+
+
+    }
+
 }
