@@ -7,6 +7,8 @@ public class Venda {
     private float comissao_venda;
     private float valor_venda;
 
+    Venda(){};
+
     Automovel automovel;
     Funcionario funcionario;
     Cliente cliente;

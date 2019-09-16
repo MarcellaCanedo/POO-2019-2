@@ -11,6 +11,7 @@ public class Principal {
     List<Funcionario> listaFuncionarios = new ArrayList<>();
     List<Cliente> listaClientes = new ArrayList<>();
     List<Automovel> listaAutomoveis = new ArrayList<>();
+    List<Venda> listaVendas = new ArrayList<>();
 
     public void calcularSalarioGenerico(Funcionario f) {
         System.out.println(f.calcularSalario());
@@ -189,7 +190,7 @@ public class Principal {
         System.out.println("#Lista de funcionarios");
         for (Funcionario f : listaFuncionarios) {
             System.out.println("Código: " + f.getCodigo() + " | " + "Nome: " + f.getNome() + " | " + "CPF: " + f.getCpf() +
-                    " | " + "Usuário: " + f.getUsuario() + " | " + "Salário com ajuste: "+ f.calcularSalario());
+                    " | " + "Usuário: " + f.getUsuario() + " | " + "Salário com ajuste: " + f.calcularSalario());
         }
     }
 
@@ -442,7 +443,7 @@ public class Principal {
         System.out.println("#Lista de Automoveis");
         for (Automovel a : listaAutomoveis) {
             System.out.println(a.getTipo() + "|" + a.getNome_modelo() + "|" + a.getNome_Marca() +
-                  " | " + a.getCor() + " | " + a.getPlaca() + " | " + a.getChassi() + "|" + a.getValor());
+                    " | " + a.getCor() + " | " + a.getPlaca() + " | " + a.getChassi() + "|" + a.getValor());
         }
     }
 
@@ -516,6 +517,7 @@ public class Principal {
         System.out.println("# Busca de dados para realizar Venda");
         System.out.println("> Informe a placa do Veiculo: ");
         String busca1 = sc.nextLine();
+        Venda venda = new Venda();
 
         float comissao = 0;
 
@@ -545,7 +547,7 @@ public class Principal {
             for (Funcionario f : listaFuncionarios) {
                 if (f.getCodigo() == busca3 && f.getCodigo() < 127 && f.getCodigo() > -128) {
                     System.out.println("Codigo: " + f.getCodigo());
-                }else {
+                } else {
                     System.out.println("> Informaçao Invalida!!!");
                     menuVenda();
                 }
@@ -553,12 +555,27 @@ public class Principal {
             System.out.println("#Valor do veiculo vendido: ");
             System.out.println(a.getValor());
             System.out.println("> Comissao recebida: ");
-            comissao = comissao + (a.getValor()/25);
+            comissao = comissao + (a.getValor() / 30);
             System.out.println(comissao);
         }
+        listaVendas.add(venda);
     }
 
-    public void listarVenda(){
+    public void listarVenda() {
 
+        System.out.println("#Lista de Vendas");
+        for (Venda v : listaVendas) {
+            for (Automovel a: listaAutomoveis)
+            System.out.println("Valor automovel: " + a.getValor());
+            for (Automovel a : listaAutomoveis) {
+                System.out.println("Placa: " + a.getPlaca());
+            }
+            for (Cliente c : listaClientes) {
+                System.out.println("Codigo Cliente: " + c.getCodigo());
+            }
+            for (Funcionario f : listaFuncionarios) {
+                System.out.println("Codigo Funcionário " + f.getCodigo());
+            }
+        }
     }
 }
