@@ -113,7 +113,7 @@ public class Principal {
         Funcionario funcionario = new Funcionario();
 
         System.out.println("# Cadastro de funcionario ");
-        System.out.println("# Escolha o tipo de funcionário: [01 - Gerente,  02 - Funcionario Normal,  03 - Badeco]");
+        System.out.println("# Escolha o tipo de funcionário: (01 - Gerente,  02 - Funcionario Normal,  03 - Badeco)");
         tipoFuncionario = fsc.nextInt();
 
         if (tipoFuncionario != 1 && tipoFuncionario != 2 && tipoFuncionario != 3) {
@@ -175,8 +175,8 @@ public class Principal {
 
                 System.out.println("> Informe o salario: ");
                 badeco.setSalario(fsc.nextFloat());
-
                 funcionario = badeco;
+
             } else {
                 System.out.println("> Informe o salario: ");
                 funcionario.setSalario(fsc.nextFloat());
@@ -517,48 +517,72 @@ public class Principal {
         System.out.println("# Busca de dados para realizar Venda");
         System.out.println("> Informe a placa do Veiculo: ");
         String busca1 = sc.nextLine();
-        Venda venda = new Venda();
 
+        Venda venda = new Venda();
+        boolean procura0 = false;
+        boolean procura1 = false;
+        boolean procura2 = false;
+        int resposta = 0;
         float comissao = 0;
 
         //Verificar os dados para cadastrar uma venda
 
         for (Automovel a : listaAutomoveis) {
             if (a.getPlaca().equals(busca1)) {
-                System.out.println("Placa: " + a.getPlaca());
-            } else {
-                System.out.println("> Informaçao Invalida!!!");
-                menuVenda();
+                System.out.println("----> Veículo escolhido ");
+                System.out.println("Placa do veículo escolhido: " + a.getPlaca());
+                procura0 = true;
             }
 
-            System.out.println("> Informe o Codigo do cliente: ");
-            int busca2 = sc.nextInt();
-            for (Cliente c : listaClientes) {
-                if (c.getCodigo() == busca2 && c.getCodigo() < 127 && c.getCodigo() > -128) {
-                    System.out.println("Codigo: " + c.getCodigo());
-                } else {
-                    System.out.println("> Informaçao Invalida!!!");
-                    menuVenda();
-                }
-            }
+            if (procura0 == true) {
+                System.out.println("> Informe o Codigo do cliente: ");
+                int busca2 = sc.nextInt();
 
-            System.out.println("> Informe o codigo do funcionrio: ");
-            int busca3 = sc.nextInt();
-            for (Funcionario f : listaFuncionarios) {
-                if (f.getCodigo() == busca3 && f.getCodigo() < 127 && f.getCodigo() > -128) {
-                    System.out.println("Codigo: " + f.getCodigo());
-                } else {
-                    System.out.println("> Informaçao Invalida!!!");
+                for (Cliente c : listaClientes) {
+                    if (c.getCodigo() == c.getCodigo()) {
+                        System.out.println("----> Cliente: ");
+                        System.out.println("Codigo: " + c.getCodigo());
+                        procura1 = true;
+                    }
+                    if (procura1 == true) {
+                        System.out.println("> Informe o codigo do funcionrio: ");
+                        int busca3 = sc.nextInt();
+
+                        for (Funcionario f : listaFuncionarios) {
+                            if (f.getCodigo() == f.getCodigo()) {
+                                System.out.println("----> Funcionário: ");
+                                System.out.println("Codigo: " + f.getCodigo());
+                                procura2 = true;
+                            }
+                        }
+                        if (procura2 == true){
+                            System.out.println("\n O veículo possui valor de desconto? (01- Sim,  00- Não)");
+                            resposta = sc.nextInt();
+                        }
+                        if(resposta == 1){
+                            System.out.println("Valor do desconto a ser aplicado sobre o veículo: ");
+                            float valorDesconto = sc.nextFloat();
+
+                            venda.setValor_venda(a.getValor() - valorDesconto);
+                            System.out.println("----> Valor do veículo: " + a.getValor());
+                            System.out.println("----> Valor com desconto: " + venda.getValor_venda());
+                            venda.setComissao_venda(venda.getValor_venda()*0.05f);
+                            System.out.println("----> Valor da comissão: " + venda.getComissao_venda());
+                        }else{
+                            System.out.println("----> Valor do veículo vendido: " + a.getValor());
+                            venda.setComissao_venda(a.getValor()*0.05f);
+                            System.out.println("----> Valor da comissão: " + venda.getComissao_venda());
+
+                        }
+                    }
+                }
+                if(!procura0 || !procura1 || !procura2){
+                    System.out.println("Registro não encontrado, tente novamente!");
                     menuVenda();
                 }
+                listaVendas.add(venda);
             }
-            System.out.println("#Valor do veiculo vendido: ");
-            System.out.println(a.getValor());
-            System.out.println("> Comissao recebida: ");
-            comissao = comissao + (a.getValor() / 30);
-            System.out.println(comissao);
         }
-        listaVendas.add(venda);
     }
 
     public void listarVenda() {
@@ -566,16 +590,21 @@ public class Principal {
         System.out.println("#Lista de Vendas");
         for (Venda v : listaVendas) {
             for (Automovel a: listaAutomoveis)
-            System.out.println("Valor automovel: " + a.getValor());
+            System.out.println("----> Valor automovel: " + a.getValor());
             for (Automovel a : listaAutomoveis) {
-                System.out.println("Placa: " + a.getPlaca());
+                System.out.println("----> Placa: " + a.getPlaca());
             }
             for (Cliente c : listaClientes) {
-                System.out.println("Codigo Cliente: " + c.getCodigo());
+                System.out.println("----> Codigo Cliente: " + c.getCodigo());
             }
             for (Funcionario f : listaFuncionarios) {
-                System.out.println("Codigo Funcionário " + f.getCodigo());
+                System.out.println("----> Codigo Funcionário " + f.getCodigo());
             }
         }
     }
+
+    public void cancelarVenda(){
+
+    }
+
 }
