@@ -680,7 +680,7 @@ public class Principal {
             case 3:
                 listarVenda();
             case 4:
-                alterarVenda();
+                //alterarVenda();
             case 0:
                 menuVenda();
             default:
@@ -755,33 +755,34 @@ public class Principal {
 
                         }
                         if (procura2 == true){
-                            System.out.println("\n O veículo possui valor de desconto? (01- Sim,  00- Não)");
+                            System.out.println("\n O automovel possui desconto? (01- Sim,  00- Não)");
                             resposta = sc.nextInt();
                         }
                         if(resposta == 1){
-                            System.out.println("Valor do desconto a ser aplicado sobre o veículo: ");
+                            System.out.println("Valor do desconto a ser aplicado sobre o automovel: ");
                             float valorDesconto = sc.nextFloat();
 
                             venda.setValor_venda(a.getValor() - valorDesconto);
-                            System.out.println("----> Valor do veículo: " + a.getValor());
+                            System.out.println("----> Valor do automovel: " + a.getValor());
                             System.out.println("----> Valor com desconto: " + venda.getValor_venda());
                             venda.setComissao_venda(venda.getValor_venda()*0.05f);
                             System.out.println("----> Valor da comissão: " + venda.getComissao_venda());
                         }else{
-                            System.out.println("----> Valor do veículo vendido: " + a.getValor());
+                            System.out.println("----> Valor do automovel vendido: " + a.getValor());
                             venda.setComissao_venda(a.getValor()*0.05f);
                             System.out.println("----> Valor da comissão: " + venda.getComissao_venda());
 
                         }
                     }
-                }
-                if(!procura0 || !procura1 || !procura2){
-                    System.out.println("Registro não encontrado, tente novamente!");
-                    menuVenda();
-                }
-                listaVendas.add(venda);
+                }break;
             }
+
         }
+            if(procura0 == false || procura1 == false || procura2 == false){
+                System.out.println("Registro não encontrado, tente novamente!");
+                menuVenda();
+            }
+        listaVendas.add(venda);
     }
 
     public void listarVenda() {
@@ -804,12 +805,6 @@ public class Principal {
         }
     }
 
-    public void alterarVenda(){
-
-
-
-    }
-
     public void cancelarVenda(){
         Scanner sc = new Scanner(System.in);
 
@@ -822,6 +817,9 @@ public class Principal {
             if(buscaVenda == v.getCodigo())
             {
                 cancelarVenda.add(v);
+            }else{
+                System.out.println("> Código Inválido");
+                menuVenda();
             }
         }
             listaVendas.removeAll(cancelarVenda);
