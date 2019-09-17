@@ -675,10 +675,12 @@ public class Principal {
                 realizarVenda();
                 break;
             case 2:
-                //cancelarVenda();
+                cancelarVenda();
                 break;
             case 3:
                 listarVenda();
+            case 4:
+                alterarVenda();
             case 0:
                 menuVenda();
             default:
@@ -702,6 +704,11 @@ public class Principal {
         float comissao = 0;
 
         //Verificar os dados para cadastrar uma venda
+
+
+        for (Venda v : listaVendas) {
+            System.out.println("> Informe o código da venda: " + v.getCodigo());
+        }
 
         for (Automovel a : listaAutomoveis) {
             if (a.getPlaca().equals(busca1)) {
@@ -780,7 +787,9 @@ public class Principal {
     public void listarVenda() {
 
         System.out.println("#Lista de Vendas");
+
         for (Venda v : listaVendas) {
+            System.out.println("----> Código da venda: " + v.getCodigo());
             for (Automovel a: listaAutomoveis)
             System.out.println("----> Valor automovel: " + a.getValor());
             for (Automovel a : listaAutomoveis) {
@@ -795,21 +804,26 @@ public class Principal {
         }
     }
 
-    public void cancelarVenda(){
+    public void alterarVenda(){
 
+
+
+    }
+
+    public void cancelarVenda(){
         Scanner sc = new Scanner(System.in);
 
-        System.out.println("> Informe o codigo da venda:");
-        int bscVenda = sc.nextInt();
+        System.out.println("> Informe o código da venda:");
+        int buscaVenda = sc.nextInt();
 
-        List<Venda> cancelaVenda = new ArrayList<>();
+        List<Venda> cancelarVenda = new ArrayList<>();
 
         for(Venda v: listaVendas){
-            if(bscVenda == v.getCodigo()){
-                cancelaVenda.add(v);
+            if(buscaVenda == v.getCodigo())
+            {
+                cancelarVenda.add(v);
             }
         }
-
-        listaVendas.removeAll(cancelaVenda);
+            listaVendas.removeAll(cancelarVenda);
     }
 }
