@@ -693,6 +693,7 @@ public class Principal {
     public void realizarVenda() {
         Scanner sc = new Scanner(System.in);
         System.out.println("# Busca de dados para realizar Venda");
+
         System.out.println("> Informe a placa do Veiculo: ");
         String busca1 = sc.nextLine();
 
@@ -705,7 +706,6 @@ public class Principal {
 
         //Verificar os dados para cadastrar uma venda
 
-
         for (Venda v : listaVendas) {
             System.out.println("> Informe o código da venda: " + v.getCodigo());
         }
@@ -716,6 +716,16 @@ public class Principal {
                 System.out.println("Placa do veículo escolhido: " + a.getPlaca());
                 procura0 = true;
             }
+
+            try {
+                System.out.print("> Informe a data da venda: : ");
+                String data = sc.nextLine();
+                Date dt = new SimpleDateFormat("dd/MM/yyyy").parse(data);
+                venda.setDt_venda(dt);
+            } catch (ParseException e) {
+                System.out.println(e.getMessage());
+            }
+
 
             if (procura0 == true) {
                 System.out.println("> Informe o Codigo do cliente: ");
@@ -742,17 +752,7 @@ public class Principal {
 
                                 System.out.println("> Informe o código da venda: ");
                                 venda.setCodigo(sc.nextInt());
-
-                                try {
-                                    System.out.print("> Data da venda: ");
-                                    String data = sc.nextLine();
-                                    Date dt = new SimpleDateFormat("dd/MM/yyyy").parse(data);
-                                    venda.setDt_venda(dt);
-                                } catch (ParseException e) {
-                                    System.out.println(e.getMessage());
-                                }
                             }
-
                         }
                         if (procura2 == true){
                             System.out.println("\n O automovel possui desconto? (01- Sim,  00- Não)");
