@@ -15,10 +15,11 @@ public class FuncionarioView {
     public FuncionarioView() {
         this.funcionarioController = funcionarioController;
         this.sc = new Scanner(System.in);
+        this.fsc = new Scanner (System.in);
     }
 
     public void menuFuncionario() {
-        System.out.println("#Menu entity.Funcionario");
+        System.out.println("#Menu Funcionario");
         System.out.println("01- Listar");
         System.out.println("02- Cadastrar");
         System.out.println("03- Alterar");
@@ -62,6 +63,15 @@ public class FuncionarioView {
 
         System.out.println("> Informe o telefone: ");
         funcionario.setTelefone(sc.nextLine());
+
+        System.out.println("> Informe o codigo: ");
+        funcionario.setCodigo(sc.nextInt());
+
+        System.out.println("> Informe o usuario: ");
+        funcionario.setUsuario(sc.nextLine());
+
+        System.out.println("> Informe a senha: ");
+        funcionario.setSenha(sc.nextLine());
 
         try {
             System.out.print("> Informe a data de nascimento: ");
