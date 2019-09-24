@@ -1,3 +1,7 @@
+package entity;
+
+import entity.Marca;
+
 public class Modelo extends Marca {
 
     private String nome_modelo;

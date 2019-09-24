@@ -1,4 +1,6 @@
-import java.util.Date;
+package entity;
+
+import entity.Funcionario;
 
 public class Gerente extends Funcionario implements IFuncionario {
 

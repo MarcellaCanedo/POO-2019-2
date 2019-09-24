@@ -1,4 +1,6 @@
-public class Funcionario extends Pessoa implements IFuncionario{
+package entity;
+
+public class Funcionario extends Pessoa implements IFuncionario {
 
     private int codigo;
     private String usuario;
@@ -6,7 +8,7 @@ public class Funcionario extends Pessoa implements IFuncionario{
     private String funcao;
     private float salario;
 
-    Funcionario (){}
+    public Funcionario(){}
 
     public void setFuncao(String funcao){
         this.funcao = funcao;

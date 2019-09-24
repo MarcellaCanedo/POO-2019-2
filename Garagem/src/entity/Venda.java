@@ -1,5 +1,10 @@
+package entity;
+
+import entity.Automovel;
+import entity.Cliente;
+import entity.Funcionario;
+
 import java.util.Date;
-import java.util.Scanner;
 
 public class Venda {
 

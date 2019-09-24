@@ -1,3 +1,5 @@
+package entity;
+
 public class Badeco extends Funcionario implements IFuncionario {
 
     private String funcao;
