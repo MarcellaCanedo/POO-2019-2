@@ -13,7 +13,7 @@ public class SQLConnection {
         if(conn == null) {
 
             try {
-                conn = DriverManager.getConnection("jdbc:mysql://localhost/Garagem v2.0","root","root");
+                conn = DriverManager.getConnection("jdbc:mysql://localhost/Garagem v2.0","Host","root");
             } catch (SQLException e) {
                 // handle any errors
                 System.out.println("SQLException: " + e.getMessage());
