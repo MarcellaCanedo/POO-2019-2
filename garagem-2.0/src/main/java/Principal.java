@@ -17,7 +17,6 @@ public class Principal {
 
         MarcaView mv = new MarcaView();
         mv.menuMarca();
-
     }
 
 }
