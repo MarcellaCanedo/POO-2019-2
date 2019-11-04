@@ -13,7 +13,7 @@ public class SQLConnection {
         if(conn == null) {
 
             try {
-                conn = DriverManager.getConnection("jdbc:mysql://localhost/Garagem v2.0","Host","root");
+                conn = DriverManager.getConnection("jdbc:postgresql://localhost/garagem-2.0","postgres","root");
             } catch (SQLException e) {
                 // handle any errors
                 System.out.println("SQLException: " + e.getMessage());
