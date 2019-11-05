@@ -9,6 +9,5 @@
         <module name="garagem-2.0" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel target="11" />
   </component>
 </project>

@@ -26,7 +26,7 @@ public class MarcaView {
         Marca m2 = marcaController.save(m);
 
         if(m2 == null){
-            System.out.println("Marca n√£o foi inserida");
+            System.out.println("Marca n„o foi inserida");
         } else {
             System.out.println("Marca");
             System.out.println("ID = " + m2.getId());

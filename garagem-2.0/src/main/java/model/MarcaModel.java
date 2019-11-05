@@ -27,24 +27,11 @@ public class MarcaModel {
 
             ps.executeUpdate();
 
-
-            // MYSQL
-            /*
             ResultSet rs = ps.getGeneratedKeys();
             if(rs.next()){
                 System.out.println(" AQUI 1");
                 System.out.println(rs.getInt(1));
                 marca.setId(rs.getInt(1));
-                return marca;
-            }
-            */
-
-            // POSTGRES
-
-            PreparedStatement psId = connection.prepareStatement("select max(id) from marca");
-            ResultSet resultSet = psId.executeQuery();
-            if(resultSet.next()){
-                marca.setId(resultSet.getInt(1));
                 return marca;
             }
 

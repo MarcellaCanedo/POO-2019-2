@@ -4,8 +4,6 @@ import java.sql.*;
 
 public class SQLConnection {
 
-    // add SET GLOBAL time_zone = '-3:00';
-
     private static java.sql.Connection conn = null;
 
     public static Connection getConnection() {
@@ -13,9 +11,8 @@ public class SQLConnection {
         if(conn == null) {
 
             try {
-                conn = DriverManager.getConnection("jdbc:postgresql://localhost/garagem-2.0","postgres","root");
+                conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1/garagem?autoReconnect=true&useSSL=false","root","root");
             } catch (SQLException e) {
-                // handle any errors
                 System.out.println("SQLException: " + e.getMessage());
                 System.out.println("SQLState: " + e.getSQLState());
                 System.out.println("VendorError: " + e.getErrorCode());
@@ -28,7 +25,5 @@ public class SQLConnection {
         } else {
             return conn;
         }
-
     }
-
 }
