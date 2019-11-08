@@ -4,6 +4,7 @@ import java.sql.*;
 
 public class SQLConnection {
 
+
     private static java.sql.Connection conn = null;
 
     public static Connection getConnection() {
@@ -13,6 +14,7 @@ public class SQLConnection {
             try {
                 conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1/garagem?autoReconnect=true&useSSL=false","root","root");
             } catch (SQLException e) {
+                // handle any errors
                 System.out.println("SQLException: " + e.getMessage());
                 System.out.println("SQLState: " + e.getSQLState());
                 System.out.println("VendorError: " + e.getErrorCode());
@@ -25,5 +27,7 @@ public class SQLConnection {
         } else {
             return conn;
         }
+
     }
+
 }

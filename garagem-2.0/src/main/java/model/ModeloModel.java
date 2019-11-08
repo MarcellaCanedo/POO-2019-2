@@ -2,6 +2,7 @@ package model;
 
 import config.SQLConnection;
 import entity.Marca;
+import entity.Modelo;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -11,35 +12,45 @@ import java.util.List;
 
 import com.mysql.jdbc.Statement;
 
-public class MarcaModel {
+public class ModeloModel {
 
     Connection connection;
 
-    public MarcaModel() {
+    public ModeloModel() {
         this.connection = SQLConnection.getConnection();
     }
 
-    public Marca save(Marca marca){
+    public Modelo save(Modelo Modelo){
 
-        String SQL = "INSERT INTO marca VALUES (?,?)";
+        String SQL = "INSERT INTO modelo VALUES (?,?,?,?)";
 
         try{
 
             PreparedStatement ps = connection.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, "0");
-            ps.setString(2, marca.getNome());
+            ps.setString(2, Modelo.getNome());
+            ps.setString(3, Modelo.getTipo());
+            ps.setInt(4, Modelo.getMarca().getId());
 
             ps.executeUpdate();
 
+
+            // MYSQL
             int count = 0;
             
             ResultSet rs = ps.getGeneratedKeys();
             if(rs.next()){
-                marca.setId(rs.getInt(1));
+                Modelo.setId(rs.getInt(1));
+                Modelo.setNome(rs.getString(2));
+                Modelo.setTipo(rs.getString(3));
+                int i = rs.getInt(4);
+                Marca marca = new Marca();
+                marca = this.selectMarca(i);
+                Modelo.setMarca(marca);
                 count++;
             }
             if(count > 0) {
-            	return marca;
+            	return Modelo;
             }
             else {
             	return null;
@@ -53,14 +64,16 @@ public class MarcaModel {
         return null;
     }
 
-    public boolean update(int id, Marca m){
+    public boolean update(int id, Modelo m){
     	
-    	String sql = "UPDATE marca SET nome=? WHERE id=?";
+    	String sql = "UPDATE modelo SET nome=?, tipo=?, marca=? WHERE id=?";
 
     	try { 
 	    	PreparedStatement ps = connection.prepareStatement(sql);
 	    	ps.setString(1, m.getNome());
-	    	ps.setInt(2, id);
+	    	ps.setString(2, m.getTipo());
+	    	ps.setInt(3, m.getMarca().getId());
+	    	ps.setInt(4, id);
 	    	 
 	    	int rowsUpdated = ps.executeUpdate();
 	    	if (rowsUpdated > 0) {
@@ -77,7 +90,7 @@ public class MarcaModel {
 
     public boolean delete(int id){
     	
-    	String SQL = "DELETE FROM marca WHERE id = ?";
+    	String SQL = "DELETE FROM modelo WHERE id = ?";
     	
     	try {
 	    	PreparedStatement ps = connection.prepareStatement(SQL);
@@ -96,11 +109,11 @@ public class MarcaModel {
 		return false;
     }
 
-    public List<Marca> findAll(){
+    public List<Modelo> findAll(){
     	
-    	String SQL = "SELECT * FROM marca ORDER BY id";
+    	String SQL = "SELECT * FROM modelo ORDER BY id";
     	
-    	ArrayList<Marca> marcas = new ArrayList<Marca>();
+    	ArrayList<Modelo> Modelos = new ArrayList<Modelo>();
     	int count = 0;
     	
     	try {
@@ -110,11 +123,16 @@ public class MarcaModel {
 	
 	    	while(rs.next())
 	    	{
-	    	    Marca m = new Marca();
-	    	    m.setId(rs.getInt("id"));
-	    	    m.setNome(rs.getString("nome" ));
-
-	    	    marcas.add(m);
+	    	    Modelo modelo = new Modelo();
+	    	    modelo.setId(rs.getInt("id"));
+	    	    modelo.setNome(rs.getString("nome"));
+	    	    modelo.setTipo(rs.getString("tipo"));
+	    	    int i = rs.getInt("marca");
+                Marca marca = new Marca();
+                marca = this.selectMarca(i);
+                modelo.setMarca(marca);
+	    	    
+	    	    Modelos.add(modelo);
 	    	    count++;
 	    	}
 
@@ -124,11 +142,40 @@ public class MarcaModel {
     	if(count < 1) {
     		return null;
     	}
-        return marcas;
+        return Modelos;
     }
 
-    public Marca findById(int id){
-    	String SQL = "SELECT * FROM marca WHERE id = ?";
+    public Modelo findById(int id){
+    	String SQL = "SELECT * FROM Modelo WHERE id = ?";
+    	
+    	try {
+    		PreparedStatement ps = connection.prepareStatement(SQL);
+	    	ps.setInt(1, id);
+	    		    	
+	    	ResultSet rs = ps.executeQuery();
+	    	
+	    	if(rs.next()) {
+	    		Modelo modelo = new Modelo();
+	    	    modelo.setId(rs.getInt("id"));
+	    	    modelo.setNome(rs.getString("nome"));
+	    	    modelo.setTipo(rs.getString("tipo"));
+	    	    int i = rs.getInt("marca");
+                Marca marca = new Marca();
+                marca = this.selectMarca(i);
+                modelo.setMarca(marca);
+	    	    return modelo;
+	    	}else {
+	    		return null;
+	    	}
+    	    
+    	} catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+		return null;
+    }
+
+	public Marca selectMarca(int id) {
+		String SQL = "SELECT * FROM marca WHERE id = ?";
     	
     	try {
     		PreparedStatement ps = connection.prepareStatement(SQL);
@@ -149,5 +196,5 @@ public class MarcaModel {
             System.out.println(e.getMessage());
         }
 		return null;
-    }
+	}
 }
