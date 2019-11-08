@@ -1,23 +1,24 @@
 package model;
-
 import config.SQLConnection;
-import entity.Marca;
+import entity.Automovel;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+
 import com.mysql.jdbc.Statement;
 
-public class MarcaModel {
+public class AutomovelModel {
 
-    Connection connection = null;
+	Connection connection = null;
 
-    public MarcaModel() {
+    public AutomovelModel() {
         this.connection = SQLConnection.getConnection();
     }
 
-    public Marca save(Marca marca){
+    public Automovel save(Automovel automovel){
 
         String SQL = "INSERT INTO marca VALUES (?,?)";
 
@@ -25,17 +26,17 @@ public class MarcaModel {
 
             PreparedStatement ps = connection.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, "0");
-            ps.setString(2, marca.getNome());
+            ps.setString(2, automovel.getNome());
             ps.executeUpdate();
             int count = 0;
             
             ResultSet rs = ps.getGeneratedKeys();
             if(rs.next()){
-                marca.setId(rs.getInt(1));
+            	automovel.setId(rs.getInt(1));
                 count++;
             }
             if(count > 0) {
-            	return marca;
+            	return automovel;
             }
             else {
             	return null;
@@ -49,14 +50,14 @@ public class MarcaModel {
         return null;
     }
 
-    public boolean update(int id, Marca m){
+    public boolean update(int idautomovel, Automovel a){
     	
-    	String sql = "UPDATE marca SET nome=? WHERE idmarca=?";
+    	String sql = "UPDATE automovel SET nome=? WHERE idautomovel=?";
 
     	try { 
 	    	PreparedStatement ps = connection.prepareStatement(sql);
-	    	ps.setString(1, m.getNome());
-	    	ps.setInt(2, id);
+	    	ps.setString(1, a.getNome());
+	    	ps.setInt(2, idautomovel);
 	    	 
 	    	int rowsUpdated = ps.executeUpdate();
 	    	if (rowsUpdated > 0) {
@@ -73,11 +74,11 @@ public class MarcaModel {
 
     public boolean delete(int id){
     	
-    	String SQL = "DELETE FROM marca WHERE idmarca = ?";
+    	String SQL = "DELETE FROM automovel WHERE idautomovel = ?";
     	
     	try {
 	    	PreparedStatement ps = connection.prepareStatement(SQL);
-	    	ps.setInt(1, id);
+	    	ps.setInt(1, idautomovel);
 	    	 
 	    	int rowsDeleted = ps.executeUpdate();
 	    	if (rowsDeleted > 0) {
@@ -92,11 +93,11 @@ public class MarcaModel {
 		return false;
     }
 
-    public List<Marca> findAll(){
+    public List<Automovel> findAll(){
     	
-    	String SQL = "SELECT * FROM marca ORDER BY idmarca";
+    	String SQL = "SELECT * FROM automovel ORDER BY idautomovel";
     	
-    	ArrayList<Marca> marcas = new ArrayList<Marca>();
+    	ArrayList<Automovel> marcas = new ArrayList<Automovel>();
     	int count = 0;
     	
     	try {
@@ -106,11 +107,11 @@ public class MarcaModel {
 	
 	    	while(rs.next())
 	    	{
-	    	    Marca m = new Marca();
-	    	    m.setId(rs.getInt("idmarca"));
-	    	    m.setNome(rs.getString("nome" ));
+	    		Automovel a = new Automovel();
+	    	    a.setIdautomovel(rs.getInt("idautomovel"));
+	    	    a.setNome(rs.getString("nome" ));
 
-	    	    marcas.add(m);
+	    	    automoveis.add(m);
 	    	    count++;
 	    	}
 
@@ -146,4 +147,5 @@ public class MarcaModel {
         }
 		return null;
     }
+	
 }
