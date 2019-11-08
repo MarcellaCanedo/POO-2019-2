@@ -12,9 +12,8 @@ public class SQLConnection {
         if(conn == null) {
 
             try {
-                conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1/garagem?autoReconnect=true&useSSL=false","root","root");
+                conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/garagem?autoReconnect=true&useSSL=false","root","root");
             } catch (SQLException e) {
-                // handle any errors
                 System.out.println("SQLException: " + e.getMessage());
                 System.out.println("SQLState: " + e.getSQLState());
                 System.out.println("VendorError: " + e.getErrorCode());

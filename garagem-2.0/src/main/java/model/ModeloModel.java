@@ -14,7 +14,7 @@ import com.mysql.jdbc.Statement;
 
 public class ModeloModel {
 
-    Connection connection;
+    Connection connection = null;
 
     public ModeloModel() {
         this.connection = SQLConnection.getConnection();
@@ -34,8 +34,6 @@ public class ModeloModel {
 
             ps.executeUpdate();
 
-
-            // MYSQL
             int count = 0;
             
             ResultSet rs = ps.getGeneratedKeys();
@@ -90,7 +88,7 @@ public class ModeloModel {
 
     public boolean delete(int id){
     	
-    	String SQL = "DELETE FROM modelo WHERE id = ?";
+    	String SQL = "DELETE FROM modelo WHERE idmodelo = ?";
     	
     	try {
 	    	PreparedStatement ps = connection.prepareStatement(SQL);
@@ -111,7 +109,7 @@ public class ModeloModel {
 
     public List<Modelo> findAll(){
     	
-    	String SQL = "SELECT * FROM modelo ORDER BY id";
+    	String SQL = "SELECT * FROM modelo ORDER BY idmodelo";
     	
     	ArrayList<Modelo> Modelos = new ArrayList<Modelo>();
     	int count = 0;
@@ -146,7 +144,7 @@ public class ModeloModel {
     }
 
     public Modelo findById(int id){
-    	String SQL = "SELECT * FROM Modelo WHERE id = ?";
+    	String SQL = "SELECT * FROM Modelo WHERE idmodelo = ?";
     	
     	try {
     		PreparedStatement ps = connection.prepareStatement(SQL);
@@ -175,7 +173,7 @@ public class ModeloModel {
     }
 
 	public Marca selectMarca(int id) {
-		String SQL = "SELECT * FROM marca WHERE id = ?";
+		String SQL = "SELECT * FROM marca WHERE idmodelo = ?";
     	
     	try {
     		PreparedStatement ps = connection.prepareStatement(SQL);
@@ -185,7 +183,7 @@ public class ModeloModel {
 	    	
 	    	if(rs.next()) {
 		    	Marca m = new Marca();
-	    	    m.setId(rs.getInt("id"));
+	    	    m.setId(rs.getInt("idmodelo"));
 	    	    m.setNome(rs.getString("nome"));
 	    	    return m;
 	    	}else {

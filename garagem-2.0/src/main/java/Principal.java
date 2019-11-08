@@ -25,10 +25,10 @@ public class Principal {
     	System.out.println("1 - Marca");
     	System.out.println("2 - Modelo");
     	System.out.println("3 - Automóvel");
+    	/*System.out.println("4 - Pessoa");*/
     	System.out.println("0 - Sair");
     	
     	Scanner sc = new Scanner(System.in);
-    	
     	op = sc.nextInt();
     	
     	
@@ -45,6 +45,13 @@ public class Principal {
 		        mv.menuModelo();
 		        this.menuPrincipal();
 	        }
+    		
+    		/*case 3:{
+    			AutomovelView av = new AutomovelView();
+    			av.menuAutomovel();
+    			this.menuPrincipal();
+    		}*/
+    		
     		
     		case 0: default:{
     			System.exit(0);
