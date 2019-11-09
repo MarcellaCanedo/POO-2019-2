@@ -23,7 +23,7 @@ public class ModeloView {
     	
     	int op = 0;
     	
-    	System.out.println("========== Menu Modelo ==========");
+    	System.out.println("Menu Modelo: ");
     	System.out.println("1 - Cadastrar");
     	System.out.println("2 - Listar");
     	System.out.println("3 - Buscar");
@@ -38,7 +38,7 @@ public class ModeloView {
     	switch (op) {
 			
 			case 1:{
-				System.out.println("========== Cadastrar Modelo ==========");
+				System.out.println("Cadastrar Modelo:");
 		        Modelo m = new Modelo();
 		        Scanner c = new Scanner(System.in);
 		        
@@ -48,7 +48,8 @@ public class ModeloView {
 		        System.out.println("Informe o tipo do Modelo:");
 		        m.setTipo(c.nextLine());
 		        
-		        System.out.println("Informe o código da Marca deste Modelo:");
+		        System.out.println("Informe o código da Marca deste Modelo:"); //Código da marca == ID
+		        String sql = "select * marca where marca_idmarca = ?";
 		        Marca marca = new Marca();
 		        
 		        marca = this.selectMarca(c.nextInt());
@@ -187,7 +188,7 @@ public class ModeloView {
 	        }
 			
 			case 5:{
-				System.out.println("========== Excluir Modelo ==========");
+				System.out.println("Excluir Modelo:");
 				Scanner c = new Scanner(System.in);
 				System.out.println("Informe o código da Modelo:");
 		        int n = c.nextInt();

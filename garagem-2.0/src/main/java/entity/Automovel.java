@@ -7,7 +7,7 @@ public class Automovel {
 	    private String cor;
 	    private Date ano_fabricacao;
 	    private Date ano_modelo;
-	    private int chassi;
+	    private String chassi;
 	    private String placa;
 	    private int km;
 	    private float valor;
@@ -46,11 +46,11 @@ public class Automovel {
 			this.ano_fabricacao = ano_fabricacao;
 		}
 
-		public int getChassi() {
+		public String getChassi() {
 			return chassi;
 		}
 
-		public void setChassi(int chassi) {
+		public void setChassi(String chassi) {
 			this.chassi = chassi;
 		}
 

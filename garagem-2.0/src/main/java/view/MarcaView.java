@@ -1,6 +1,7 @@
 package view;
 
 import controller.MarcaController;
+import entity.Automovel;
 import entity.Marca;
 
 import java.util.ArrayList;
@@ -20,7 +21,7 @@ public class MarcaView {
     public void menuMarca(){
     	
     	int op;
-    	System.out.println("Menu Marcas");
+    	System.out.println("Menu Automóvel");
     	System.out.println("1 - Cadastrar");
     	System.out.println("2 - Listar");
     	System.out.println("3 - Buscar");
@@ -28,14 +29,13 @@ public class MarcaView {
     	System.out.println("5 - Excluir");
     	System.out.println("0 - Voltar");
     	Scanner sc = new Scanner(System.in);
-    	
     	op = sc.nextInt();
     	
     	switch (op) {
 			
 			case 1:{
-				System.out.println("Cadastrar Marca: ");
-		        Marca m = new Marca();
+				System.out.println("Cadastrar Automovel: ");
+				Automovel a = new Automovel();
 		        Scanner c = new Scanner(System.in);
 		        
 		        System.out.println("Informe o nome da Marca:");
