@@ -20,13 +20,18 @@ public class AutomovelModel {
 
     public Automovel save(Automovel automovel){
 
-        String SQL = "INSERT INTO marca VALUES (?,?)";
+        String SQL = "INSERT INTO marca VALUES (? ,? ,?, ?, ?, ?, ?, ?)";
 
         try{
-
             PreparedStatement ps = connection.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, "0");
-            ps.setString(2, automovel.getNome());
+            ps.setString(2, automovel.getCor());
+            ps.setString(3,automovel.getAno_fabricacao());
+            ps.setString(4,automovel.getAno_modelo());
+            ps.setString(5,automovel.getChassi());
+            ps.setString(6,automovel.getPlaca());
+            ps.setString(7,automovel.getKm());
+            ps.setString(3,automovel.getValor());
             ps.executeUpdate();
             int count = 0;
             
@@ -52,7 +57,7 @@ public class AutomovelModel {
 
     public boolean update(int idautomovel, Automovel a){
     	
-    	String sql = "UPDATE automovel SET nome=? WHERE idautomovel=?";
+    	String sql = "UPDATE automovel SET placa=? WHERE idautomovel=?";
 
     	try { 
 	    	PreparedStatement ps = connection.prepareStatement(sql);

@@ -19,16 +19,14 @@ public class MarcaView {
 
     public void menuMarca(){
     	
-    	int op = 0;
-    	
-    	System.out.println("========== Menu Marca ==========");
+    	int op;
+    	System.out.println("Menu Marcas");
     	System.out.println("1 - Cadastrar");
     	System.out.println("2 - Listar");
     	System.out.println("3 - Buscar");
     	System.out.println("4 - Alterar");
     	System.out.println("5 - Excluir");
     	System.out.println("0 - Voltar");
-    	
     	Scanner sc = new Scanner(System.in);
     	
     	op = sc.nextInt();
@@ -36,13 +34,12 @@ public class MarcaView {
     	switch (op) {
 			
 			case 1:{
-				System.out.println("========== Cadastrar Marca ==========");
+				System.out.println("Cadastrar Marca: ");
 		        Marca m = new Marca();
 		        Scanner c = new Scanner(System.in);
 		        
 		        System.out.println("Informe o nome da Marca:");
 		        m.setNome(c.nextLine());
-
 		        Marca m2 = this.save(m);
 
 		        if(m2 == null){
