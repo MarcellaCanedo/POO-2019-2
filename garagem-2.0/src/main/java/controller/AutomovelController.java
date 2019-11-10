@@ -3,6 +3,7 @@ package controller;
 import java.util.List;
 import entity.Automovel;
 import entity.Marca;
+import model.AutomovelModel;
 import model.MarcaModel;
 
 public class AutomovelController {
@@ -14,7 +15,6 @@ public class AutomovelController {
     }
 
     public Automovel save(Automovel automovel){
-
         return this.automovelModel.save(automovel);
 
     }
@@ -31,8 +31,8 @@ public class AutomovelController {
     	return automovelModel.findAll();
     }
 
-    public Automovel findById(int idautomovel){
-        return marcaModel.findById(idautomovel);
+    public Marca findById(int idautomovel){
+        return MarcaModel.findById(idautomovel);
     }
 	
 }

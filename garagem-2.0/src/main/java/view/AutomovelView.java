@@ -1,8 +1,13 @@
 package view;
 
+import java.sql.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+
+import com.mysql.fabric.xmlrpc.base.Data;
 
 import controller.AutomovelController;
 import controller.MarcaController;
@@ -19,7 +24,7 @@ public class AutomovelView {
 	        this.automovelController = new AutomovelController();
 	    }
 
-	    public void menuMarca(){
+	    public void menuAutomovel(){
 	    	
 	    	int op;
 	    	System.out.println("Menu Automoveis");
@@ -31,76 +36,107 @@ public class AutomovelView {
 	    	System.out.println("0 - Voltar");
 	    	Scanner sc = new Scanner(System.in);
 	    	op = sc.nextInt();
-	    	
 	    	switch (op) {
 				
 				case 1:{
 					System.out.println("Cadastrar Automovel: ");
 					Automovel a = new Automovel();
 			        Scanner c = new Scanner(System.in);
-			        
-			        System.out.println("Informe o nome da Marca:");
-			        m.setNome(c.nextLine());
-			        Marca m2 = this.save(m);
 
-			        if(m2 == null){
-			            System.out.println("\n\nMarca não foi cadastrada!\n\n");
+			        System.out.println("-> Cor: ");
+			        a.setCor(c.nextLine());
+			        Automovel a2 = this.save(a);
+			        
+			        System.out.println("-> Ano de Fabrição: ");
+			        /*Date d = new Date(op, op, op);
+			        a.setAno_fabricacao(c.nextInt(d));  //Ainda não funciona as datas
+			        Automovel a3 = this.save(a);*/
+			        
+			        System.out.println("-> Ano do modelo: ");
+			        /*Date d = new Date(op, op, op);
+			        a.setAno_modelo(d(c.nextInt());  //Ainda não funciona as datas
+			        Automovel a3 = this.save(a);*/
+			        
+			        System.out.println("-> Chassi: ");
+			        a.setChassi(c.nextLine());
+			        Automovel a3 = this.save(a);
+			        
+			        System.out.println("-> Placa: ");
+			        a.setPlaca(c.nextLine());
+			        Automovel a4 = this.save(a);
+			        
+			        System.out.println("-> Kilometragem: ");
+			        a.setKm(c.nextInt());
+			        Automovel a5 = this.save(a);
+			        
+			        System.out.println("Valor do automóvel: ");
+			        a.setKm(c.nextInt());
+			        Automovel a6 = this.save(a);
+			        
+			        if(a == null){
+			            System.out.println("\nO Automóvel não foi cadastrado!\n");
 			        } else {
-			            System.out.println("\n\nMarca cadastrada com sucesso!");
-			            if(m2.getId() < 10) {
-		    				System.out.println("ID - 0"+m2.getId());
+			            System.out.println("\n\nAutomóvel cadastrado com sucesso!");
+			            if(a.getId() < 10) {
+		    				System.out.println("ID - 0"+a.getId());
 		    			}else {
-		    				System.out.println("ID - "+m2.getId());
+		    				System.out.println("ID - "+a.getId());
 		    			}
-			            System.out.println("NOME - "+m2.getNome());
+			            System.out.println("COR -> "+a.getPlaca());
+			            System.out.println("PLACA -> "+a.getPlaca());
+			            System.out.println("VALOR -> "+a.getValor());
 			        }
 			        
-			        this.menuMarca();
+			        menuAutomovel();
 			        break;
 		        }
 				
 				case 2:{
-					marcas = (ArrayList<Marca>) this.findAll();
-			    	System.out.println("========== Listar Marca ==========");
-			    	if(marcas != null) {
-			    		marcas.forEach((m) -> {
-			    			if(m.getId() < 10) {
-			    				System.out.println("ID - 0"+m.getId());
+					automoveis = (ArrayList <Automovel> ) this.findAll();
+			    	System.out.println("####  Listar Marca ####");
+			    	if(automoveis != null) {
+			    		automoveis.forEach((a) -> {
+			    			if(a.getId() < 10) {
+			    				System.out.println("ID - 0"+a.getId());
 			    			}else {
-			    				System.out.println("ID - "+m.getId());
+			    				System.out.println("ID - "+a.getId());
 			    			}
-				            System.out.println("NOME - "+m.getNome());
-				            System.out.println("----------------------------------");
+			    			System.out.println("COR -> "+a.getPlaca());
+				            System.out.println("PLACA -> "+a.getPlaca());
+				            System.out.println("VALOR -> "+a.getValor());
+				            System.out.println("\n");
+				            System.out.println("##############################");
 			    		});
 			    	}else {
-			    		System.out.println("Não há marcas cadastradas!");
+			    		System.out.println("Nenhum veículo encontrado!");
 			    	}
 			    	System.out.println("\n");
-			    	
-					this.menuMarca();
+					menuAutomovel();
 			        break;
 		        }
 				
 				case 3:{
-					System.out.println("========== Buscar Marca ==========");
+					System.out.println("####  Buscar Automóvel  ####");
 					Scanner c = new Scanner(System.in);
-					System.out.println("Informe o código da Marca:");
+					System.out.println("Informe o código do Automóvel:");
 			        int n = c.nextInt();
-			        Marca m = new Marca();
-					m = this.findById(n);
-					if(m != null) {
-						if(m.getId() < 10) {
-		    				System.out.println("ID - 0"+m.getId());
+			        Automovel a = new Automovel();
+					a = this.findById(a);
+					if(a != null) {
+						if(a.getId() < 10) {
+		    				System.out.println("ID - 0"+a.getId());
 		    			}else {
-		    				System.out.println("ID - "+m.getId());
+		    				System.out.println("ID - "+a.getId());
 		    			}
-			            System.out.println("NOME - "+m.getNome());
+						System.out.println("COR -> "+a.getPlaca());
+			            System.out.println("PLACA -> "+a.getPlaca());
+			            System.out.println("VALOR -> "+a.getValor());
 					}
 					else {
-						System.out.println("Este código não existe!\n");
+						System.out.println("Esta Placa ainda não existe!!\n");
 					}
 					System.out.println("\n");
-					this.menuMarca();
+					menuAutomovel();
 			        break;
 		        }
 				
@@ -129,32 +165,32 @@ public class AutomovelView {
 			        Scanner nome = new Scanner(System.in);
 			        m.setNome(nome.next());
 
-			        boolean r = this.update(n, m);
-			        if(r == true) {
-			        	System.out.println("Marca alterada com sucesso!");
+			        boolean resp = this.update(n, m);
+			        if(resp == true) {
+			        	System.out.println("Informações do automóvel alteradas!");
 			        }
 			        else {
 			        	System.out.println("A marca não foi alterada ou não existe!");
 			        }
 			        
-			        this.menuMarca();
+			        menuAutomovel();
 			        break;
 		        }
 				
 				case 5:{
-					System.out.println("========== Excluir Marca ==========");
+					System.out.println(" Excluir Automóvel: ");
 					Scanner c = new Scanner(System.in);
-					System.out.println("Informe o código da Marca:");
+					System.out.println("Informe a placa do automóvel:");
 			        int n = c.nextInt();
-			        boolean r = this.delete(n);
-			        if(r == true) {
-			        	System.out.println("Marca excluída com sucesso!");
+			        boolean resp = this.delete(n);
+			        if(resp == true) {
+			        	System.out.println("Automóvel excluido!!!");
 			        }
 			        else {
-			        	System.out.println("A marca não foi excluída ou não existe!");
+			        	System.out.println("Automóvel não encontrado");
 			        }
 			        
-					this.menuMarca();
+					menuAutomovel();    
 			        break;
 		        }
 				
@@ -166,24 +202,24 @@ public class AutomovelView {
 	    }
 
 
-	    public Marca save(Marca m){
-	    	return marcaController.save(m);
+	    public Automovel save(Automovel a){
+	    	return automovelController.save(a);
 	    }
 
-	    public boolean update(int id, Marca m){
-	        return marcaController.update(id, m);
+	    public boolean update(int idautomovel, Automovel a){
+	        return automovelController.update(idautomovel, a);
 	    }
 
-	    public boolean delete(int id){
-	    	return marcaController.delete(id);
+	    public boolean delete(int idautomovel){
+	    	return automovelController.delete(idautomovel);
 	    }
 
-	    public List<Marca> findAll(){
-	    	return marcaController.findAll();
+	    public List<Automovel> findAll(){
+	    	return automovelController.findAll();
 	    }
 
 	    public Marca findById(int id){
-	    	return marcaController.findById(id);
+	    	return automovelController.findById(id);
 	    }
 
 	

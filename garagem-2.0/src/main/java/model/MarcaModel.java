@@ -11,7 +11,7 @@ import com.mysql.jdbc.Statement;
 
 public class MarcaModel {
 
-    Connection connection = null;
+    static Connection connection = null;
 
     public MarcaModel() {
         this.connection = SQLConnection.getConnection();
@@ -73,7 +73,7 @@ public class MarcaModel {
 
     public boolean delete(int id){
     	
-    	String SQL = "DELETE FROM marca WHERE idmarca = ?";
+    	String SQL = "DELETE FROM marca WHERE id = ?";
     	
     	try {
 	    	PreparedStatement ps = connection.prepareStatement(SQL);
@@ -123,7 +123,7 @@ public class MarcaModel {
         return marcas;
     }
 
-    public Marca findById(int idmarca){
+    public static Marca findById(int idmarca){
     	String SQL = "SELECT * FROM marca WHERE idmarca = ?";
     	
     	try {

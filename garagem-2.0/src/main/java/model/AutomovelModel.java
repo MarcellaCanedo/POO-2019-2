@@ -8,8 +8,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.*;
-
 import com.mysql.jdbc.Statement;
 
 public class AutomovelModel {
@@ -104,7 +102,7 @@ public class AutomovelModel {
     	
     	String SQL = "SELECT * FROM automovel ORDER BY idautomovel";
     	
-    	ArrayList<Automovel> marcas = new ArrayList<Automovel>();
+    	ArrayList<Automovel> automoveis = new ArrayList<Automovel>();
     	int count = 0;
     	
     	try {
@@ -118,7 +116,7 @@ public class AutomovelModel {
 	    	    a.setId(rs.getInt("id"));
 	    	    a.setPlaca(rs.getString("Placa" ));
 
-	    	    automoveis.add(a); //model
+	    	    automoveis.add(a);
 	    	    count++;
 	    	}
 

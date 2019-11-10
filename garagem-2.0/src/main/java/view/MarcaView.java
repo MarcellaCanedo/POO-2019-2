@@ -39,7 +39,8 @@ public class MarcaView {
 		        Scanner c = new Scanner(System.in);
 		        
 		        System.out.println("Informe o nome da Marca:");
-		        m.setNome(c.nextLine());
+		        Marca m = null;
+				m.setNome(c.nextLine());
 		        Marca m2 = this.save(m);
 
 		        if(m2 == null){
