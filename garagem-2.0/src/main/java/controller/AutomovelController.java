@@ -31,8 +31,7 @@ public class AutomovelController {
     	return automovelModel.findAll();
     }
 
-    public Marca findById(int idautomovel){
-        return MarcaModel.findById(idautomovel);
+    public Automovel findById(Automovel a){
+        return automovelModel.findById(a);
     }
-	
 }

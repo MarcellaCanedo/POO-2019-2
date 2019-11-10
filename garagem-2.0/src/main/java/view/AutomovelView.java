@@ -16,7 +16,7 @@ import entity.Marca;
 
 public class AutomovelView {
 
-	 AutomovelController automovelController;
+	 	AutomovelController automovelController;
 	    
 	    ArrayList<Automovel> automoveis = new ArrayList<Automovel>();
 
@@ -133,7 +133,7 @@ public class AutomovelView {
 			            System.out.println("VALOR -> "+a.getValor());
 					}
 					else {
-						System.out.println("Esta Placa ainda não existe!!\n");
+						System.out.println("Esta placa ainda não existe!!\n");
 					}
 					System.out.println("\n");
 					menuAutomovel();
@@ -141,24 +141,57 @@ public class AutomovelView {
 		        }
 				
 				case 4:{
-					System.out.println("========== Alterar Marca ==========");
+					System.out.println("####  Alterar Marca  ####");
 					Scanner c = new Scanner(System.in);
-					System.out.println("Informe o código da Marca:");
-			        int n = c.nextInt();
-			        Marca m = this.findById(n);
-			        if(m == null) {
+					System.out.println("Informe a Placa do Automóvel:");
+			        int a = c.nextInt();
+			        Automovel a1 = this.findById(a1);
+			        if(a1 == null) {
 			        	System.out.println("Este código não existe!\n");
-			        	this.menuMarca();
+			        	menuAutomovel();
 			        }
 			        else {
-			        	System.out.println("Id     Marca");
-			        	if(m.getId() < 10) {
-		    				System.out.println("ID - 0"+m.getId());
+			        	System.out.println("Id  Automovel");
+			        	if(a1.getId() < 10) {
+		    				System.out.println("ID - 0"+a1.getId());
 		    			}else {
-		    				System.out.println("ID - "+m.getId());
+		    				System.out.println("ID - "+a1.getId());
 		    			}
-			            System.out.println("NOME - "+m.getNome());
+			        	System.out.println("COR -> "+a1.getPlaca());
+			            System.out.println("PLACA -> "+a1.getPlaca());
+			            System.out.println("VALOR -> "+a1.getValor());
 			        }
+			        
+			        System.out.println("Informe os novos dados: ");
+			        System.out.println("COR ->");
+			        Scanner cor = new Scanner(System.in);
+		            a1.setCor(cor.next());
+			        
+			        /*MODIFICARRRRRRRRRRRRRRRRRR*/
+			        System.out.println("ANO DE FABRICAÇÃO -> ");
+			        Scanner ano_fabricacao = new Scanner(System.in);
+			        a1.setAno_fabricacao(Ano_fabricacao.next());
+			        
+			        System.out.println("ANO DO MODELO -> ");
+			        Scanner ano_modelo = new Scanner(System.in);
+			        a1.setAno_fabricacao(Ano_fabricacao.next());
+			        
+			        System.out.println("CHASSI -> ");
+			        Scanner chassi = new Scanner(System.in);
+			        a1.setAno_fabricacao(Ano_fabricacao.next());
+			        
+			        System.out.println("PLACA -> ");
+			        Scanner placa = new Scanner(System.in);
+			        a1.setAno_fabricacao(Ano_fabricacao.next());
+			        
+			        System.out.println("KILOMETRAGEM -> ");
+			        Scanner km = new Scanner(System.in);
+			        a1.setAno_fabricacao(Ano_fabricacao.next());
+			        
+			        System.out.println("VALOR -> ");
+			        Scanner valor = new Scanner(System.in);
+			        a1.setAno_fabricacao(Ano_fabricacao.next());
+			        
 			        
 			        
 			        System.out.println("\nInforme o novo nome da Marca:");
@@ -214,12 +247,12 @@ public class AutomovelView {
 	    	return automovelController.delete(idautomovel);
 	    }
 
-	    public List<Automovel> findAll(){
+	    public List <Automovel> findAll(){
 	    	return automovelController.findAll();
 	    }
 
-	    public Marca findById(int id){
-	    	return automovelController.findById(id);
+	    public Automovel findById(Automovel a){
+	    	return automovelController.findById(a);
 	    }
 
 	
