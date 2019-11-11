@@ -1,14 +1,10 @@
 package view;
-
 import controller.ModeloController;
 import entity.Marca;
-import model.MarcaModel;
 import entity.Modelo;
+import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
-
-import com.mysql.jdbc.Statement;
 
 public class ModeloView {
 
@@ -16,16 +12,16 @@ public class ModeloView {
     
     ArrayList<Modelo> modelos = new ArrayList<Modelo>();
 
-	private String sql;
-
-    public ModeloView() {
+	private Scanner sc;
+	private Scanner c;
+	int op;
+	
+	public ModeloView() {
         this.ModeloController = new ModeloController();
     }
 
     public void menuModelo(){
-    	
-    	int op = 0;
-    	
+    		
     	System.out.println("Menu Modelo: ");
     	System.out.println("1- Cadastrar");
     	System.out.println("2- Listar");
@@ -33,70 +29,62 @@ public class ModeloView {
     	System.out.println("4- Alterar");
     	System.out.println("5- Excluir");
     	System.out.println("00- Voltar");
-    	
-    	Scanner sc = new Scanner(System.in);
+    	sc = new Scanner(System.in);
     	op = sc.nextInt();
     	
     	switch (op) {
 			
 			case 1:{
 		        Modelo cmodelo = new Modelo();
-		        Scanner c = new Scanner(System.in);
+		        c = new Scanner(System.in);
 		        
-		        System.out.println("Informe o nome do Modelo:");
+		        System.out.println("Nome de Modelo: ");
 		        cmodelo.setNome(c.nextLine());
 		        
-		        System.out.println("Informe o tipo do Modelo:");
+		        System.out.println("Tipo de Modelo: ");
 		        cmodelo.setTipo(c.nextLine());
 		        
-		        System.out.println("Informe o código da Marca deste Modelo:"); 
-		        String sql = "select * FROM garagem.marca where marca_idmarca =?";
+		        System.out.println("Código da Marca deste Modelo:"); 
 		        Marca marca = new Marca();
-		        
 		        marca = this.selectMarca(c.nextInt());
 		        
 		        if(marca == null) {
-		        	this.menuModelo();
+		        	System.out.println("Marca não registrada na base de dados!");
+		        	menuModelo();
 		        }
 		        else {
-		        	System.out.println("Marca: "+marca.getNome());
+		        	System.out.println("Marca: " + marca.getNome());
 		        }
-		        
 		        cmodelo.setMarca(marca);
-		        
-		        Modelo m2 = this.save(cmodelo);
+		        Modelo M = save(cmodelo);
 
-		        if(m2 == null){
-		            System.out.println("\n\nModelo não foi cadastrado!\n\n");
+		        if(M == null){
+		            System.out.println("\nModelo não foi cadastrado!\n");
 		        } else {
 		            System.out.println("\n\nModelo cadastrado com sucesso!");
-		            if(m2.getId() < 10) {
-	    				System.out.println("ID - 0"+m2.getId());
-	    			}else {
-	    				System.out.println("ID - "+m2.getId());
+		            if(M.getId() < 500) {
+	    				System.out.println("ID --> " + M.getId());
 	    			}
-		            System.out.println("NOME - "+m2.getNome());
-		            System.out.println("TIPO - "+m2.getTipo());
-		            System.out.println("MARCA - "+m2.getMarca().getNome());
+		            System.out.println("Nome --> " + M.getNome());
+		            System.out.println("Tipo --> " + M.getTipo());
+		            System.out.println("Marca --> " + M.getMarca().getNome());
 		        }
 		        
-		        this.menuModelo();
+		        menuModelo();
 		        break;
 	        }
 			
 			case 2:{
 				modelos = (ArrayList<Modelo>) this.findAll();
-		    	System.out.println("========== Listar Modelo ==========");
+		    	System.out.println("####  Listar Modelo  ####");
 		    	if(modelos != null) {
 		    		modelos.forEach((m) -> {
-		    			if(m.getId() < 10) {
-		    				System.out.println("ID - 0"+m.getId());
-		    			}else {
-		    				System.out.println("ID - "+m.getId());
+		    			if(m.getId() < 500) {
+		    				System.out.println("ID --> "+m.getId());
 		    			}
-			            System.out.println("NOME - "+m.getNome());
-			            System.out.println("TIPO - "+m.getTipo());
-			            System.out.println("MARCA - "+m.getMarca().getNome());
+			            System.out.println("Nome --> " + m.getNome());
+			            System.out.println("Tipo --> " + m.getTipo());
+			            System.out.println("Marca --> " + m.getMarca().getNome());
 			            System.out.println("----------------------------------");
 		    		});
 		    	}else {
@@ -104,38 +92,35 @@ public class ModeloView {
 		    	}
 		    	System.out.println("\n");
 		    	
-				this.menuModelo();
+				menuModelo();
 		        break;
 	        }
 			
 			case 3:{
-				System.out.println("========== Buscar Modelo ==========");
+				System.out.println("####  Buscar Modelo  ####");
 				Scanner c = new Scanner(System.in);
-				System.out.println("Informe o código da Modelo:");
+				System.out.println("Informe o código da Modelo: ");
 		        int n = c.nextInt();
 		        Modelo m = new Modelo();
 				m = this.findById(n);
 				if(m != null) {
-					System.out.println("Id     Modelo");
-					if(m.getId() < 10) {
-	    				System.out.println("ID - 0"+m.getId());
-	    			}else {
-	    				System.out.println("ID - "+m.getId());
+					if(m.getId() < 500) {
+	    				System.out.println("ID --> " + m.getId());
 	    			}
-		            System.out.println("NOME - "+m.getNome());
-		            System.out.println("TIPO - "+m.getTipo());
-		            System.out.println("MARCA - "+m.getMarca().getNome());
+		            System.out.println("Nome --> " + m.getNome());
+		            System.out.println("Tipo --> " + m.getTipo());
+		            System.out.println("Marca --> " + m.getMarca().getNome());
 				}
 				else {
 					System.out.println("Este código não existe!\n");
 				}
 				System.out.println("\n");
-				this.menuModelo();
+				menuModelo();
 		        break;
 	        }
 			
 			case 4:{
-				System.out.println("========== Alterar Modelo ==========");
+				System.out.println("####  Alterar Modelo  ####");
 				Scanner c = new Scanner(System.in);
 				System.out.println("Informe o código do Modelo:");
 		        int n = c.nextInt();
@@ -145,33 +130,29 @@ public class ModeloView {
 		        	this.menuModelo();
 		        }
 		        else {
-		        	if(m.getId() < 10) {
-	    				System.out.println("ID - 0"+m.getId());
-	    			}else {
-	    				System.out.println("ID - "+m.getId());
+		        	if(m.getId() < 500) {
+	    				System.out.println("ID --> " + m.getId());
 	    			}
-		            System.out.println("NOME - "+m.getNome());
-		            System.out.println("TIPO - "+m.getTipo());
-		            System.out.println("MARCA - "+m.getMarca().getNome());
+		        	System.out.println("Nome --> " + m.getNome());
+		            System.out.println("Tipo --> " + m.getTipo());
+		            System.out.println("Marca --> " + m.getMarca().getNome());
 		        }
 		        
 		        System.out.println("\nInforme o novo nome do Modelo:");
 		        m.setNome(c.next());
 		        
-	        
 		        System.out.println("Informe o novo tipo do Modelo:");
 		        m.setTipo(c.next());
 		        
 		        System.out.println("Informe o novo código da Marca deste Modelo:");
 		        Marca marca = new Marca();
-		        
-		        marca = this.selectMarca(c.nextInt());
+		        marca = selectMarca(c.nextInt());
 		        
 		        if(marca == null) {
-		        	this.menuModelo();
+		        	menuModelo();
 		        }
 		        else {
-		        	System.out.println("Marca: "+marca.getNome());
+		        	System.out.println("Marca --> "+marca.getNome());
 		        }
 		        
 		        m.setMarca(marca);
@@ -201,7 +182,7 @@ public class ModeloView {
 		        	System.out.println("A Modelo não foi excluído ou não existe!");
 		        }
 		        
-				this.menuModelo();
+				menuModelo();
 		        break;
 	        }
 			

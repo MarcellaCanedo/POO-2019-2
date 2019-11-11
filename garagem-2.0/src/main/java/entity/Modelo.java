@@ -38,4 +38,8 @@ public class Modelo {
     public void setMarca(Marca marca) {
         this.marca = marca;
     }
+
+	public static Automovel getModelo() {
+		return null;
+	}
 }

@@ -5,8 +5,8 @@ public class Automovel {
 
 	 	private int id;
 	    private String cor;
-	    private Date ano_fabricacao;
-	    private Date ano_modelo;
+	    private String ano_fabricacao;
+	    private String ano_modelo;
 	    private String chassi;
 	    private String placa;
 	    private int km;
@@ -30,20 +30,20 @@ public class Automovel {
 	        this.cor = cor;
 	    }
 
-		public Date getAno_modelo() {
+		public String getAno_modelo() {
 			return ano_modelo;
 		}
 
-		public void setAno_modelo(Date ano_modelo) {
-			this.ano_modelo = ano_modelo;
+		public void setAno_modelo(String string) {
+			this.ano_modelo = string;
 		}
 
-		public Date getAno_fabricacao() {
+		public String getAno_fabricacao() {
 			return ano_fabricacao;
 		}
 
-		public void setAno_fabricacao(Date ano_fabricacao) {
-			this.ano_fabricacao = ano_fabricacao;
+		public void setAno_fabricacao(String string) {
+			this.ano_fabricacao = string;
 		}
 
 		public String getChassi() {
@@ -66,8 +66,8 @@ public class Automovel {
 			return km;
 		}
 
-		public void setKm(int km) {
-			this.km = km;
+		public void setKm(int string) {
+			this.km = string;
 		}
 
 		public float getValor() {

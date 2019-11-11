@@ -2,7 +2,6 @@ package controller;
 
 import entity.Marca;
 import model.MarcaModel;
-
 import java.util.ArrayList;
 import java.util.List;
 

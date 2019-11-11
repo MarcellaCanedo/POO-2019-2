@@ -1,9 +1,9 @@
 package model;
 import config.SQLConnection;
 import entity.Automovel;
+import entity.Modelo;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -20,18 +20,19 @@ public class AutomovelModel {
 
     public Automovel save(Automovel automovel){
 
-        String SQL = "INSERT INTO marca VALUES (? ,? , ?, ?, ?, ?, ?, ?)";
+        String SQL = "INSERT INTO automovel VALUES (? ,? , ?, ?, ?, ?, ?, ?, ?)";
 
         try{
             PreparedStatement ps = connection.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, "0");
             ps.setString(2, automovel.getCor());
-            ps.setDate(3,(Date) automovel.getAno_fabricacao());
-            ps.setDate(4,(Date) automovel.getAno_modelo());
+            ps.setString(3, automovel.getAno_fabricacao());
+            ps.setString(4, automovel.getAno_modelo());
             ps.setString(5,automovel.getChassi());
             ps.setString(6,automovel.getPlaca());
             ps.setInt(7,automovel.getKm());
             ps.setFloat(8,automovel.getValor());
+            ps.setInt(9, Modelo.getModelo().getId());
             ps.executeUpdate();
             int cont= 0;
             
@@ -60,8 +61,15 @@ public class AutomovelModel {
 
     	try { 
 	    	PreparedStatement ps = connection.prepareStatement(sql);
-	    	ps.setString(1, a.getPlaca());
-	    	ps.setInt(2, a1);
+	    	ps.setInt(1, a.getId());
+            ps.setString(2, a.getCor());
+            ps.setString(3, a.getAno_fabricacao());
+            ps.setString(4, a.getAno_modelo());
+            ps.setString(5,a.getChassi());
+            ps.setString(6,a.getPlaca());
+            ps.setInt(7, a.getKm());
+            ps.setFloat(8, a.getValor());
+            ps.setInt(9, Modelo.getModelo().getId());
 	    	 
 	    	int rowsUpdated = ps.executeUpdate();
 	    	if (rowsUpdated > 0) {
@@ -114,6 +122,16 @@ public class AutomovelModel {
 	    		Automovel a = new Automovel();
 	    	    a.setId(rs.getInt("id"));
 	    	    a.setPlaca(rs.getString("Placa" ));
+	    	    
+	    	    a.setId(rs.getInt("id"));
+	            a.setCor(rs.getString("cor"));
+	            a.setAno_fabricacao(rs.getString("Ano_fabricacao"));
+	            a.setAno_modelo(rs.getString("Ano_modelo"));
+	            a.setChassi(rs.getString("Chassi"));
+	            a.setPlaca(rs.getString("Placa"));
+	            a.setKm(rs.getInt("Kilometragem"));
+	            a.setValor(rs.getFloat("Valor"));
+	            a.setCor(rs.getString("cor"));
 
 	    	    automoveis.add(a);
 	    	    cont++;
@@ -141,8 +159,8 @@ public class AutomovelModel {
 		    	Automovel a = new Automovel();
 	    	    a.setId(rs.getInt("idautomovel"));
 	    	    a.setCor(rs.getString("cor"));
-	    	    a.setAno_fabricacao(rs.getDate("Ano_Fabricacao"));
-	    	    a.setAno_modelo(rs.getDate("Ano_modelo"));
+	    	    a.setAno_fabricacao(rs.getString("Ano_Fabricacao"));
+	    	    a.setAno_modelo(rs.getString("Ano_modelo"));
 	    	    a.setChassi(rs.getString("Chassi"));
 	    	    a.setPlaca(rs.getString("Placa"));
 	    	    a.setKm(rs.getInt("Km"));

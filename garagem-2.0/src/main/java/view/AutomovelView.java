@@ -3,12 +3,14 @@ package view;
 import java.sql.Date;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.Year;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-
+import java.util.Set;
+import java.util.Calendar;
 import com.mysql.fabric.xmlrpc.base.Data;
-
+import com.sun.tools.javac.parser.ReferenceParser.ParseException;
 import controller.AutomovelController;
 import controller.MarcaController;
 import entity.Automovel;
@@ -47,37 +49,35 @@ public class AutomovelView {
 
 			        System.out.println("-> Cor: ");
 			        a.setCor(c.nextLine());
-			        Automovel a2 = this.save(a);
+			        Automovel a1 = this.save(a);
 			        
 			        System.out.println("-> Ano de Fabrição: ");
-			        /*Date d = new Date(op, op, op);
-			        a.setAno_fabricacao(c.nextInt(d));  //Ainda não funciona as datas
-			        Automovel a3 = this.save(a);*/
+			        a.setAno_fabricacao(c.nextLine());  
+			        Automovel a2 = this.save(a);
 			        
 			        System.out.println("-> Ano do modelo: ");
-			        /*Date d = new Date(op, op, op);
-			        a.setAno_modelo(d(c.nextInt());  //Ainda não funciona as datas
-			        Automovel a3 = this.save(a);*/
+			        a.setAno_modelo(c.nextLine());  
+			        Automovel a3 = this.save(a);
 			        
 			        System.out.println("-> Chassi: ");
 			        a.setChassi(c.nextLine());
-			        Automovel a3 = this.save(a);
+			        Automovel a5 = this.save(a);
 			        
 			        System.out.println("-> Placa: ");
 			        a.setPlaca(c.nextLine());
-			        Automovel a4 = this.save(a);
+			        Automovel a6 = this.save(a);
 			        
 			        System.out.println("-> Kilometragem: ");
 			        a.setKm(c.nextInt());
-			        Automovel a5 = this.save(a);
+			        Automovel a7 = this.save(a);
 			        
 			        System.out.println("Valor do automóvel: ");
 			        a.setKm(c.nextInt());
-			        Automovel a6 = this.save(a);
+			        Automovel a8 = this.save(a);
 			        
 			        if(a == null){
 			            System.out.println("\nO Automóvel não foi cadastrado!\n");
-			        } else {
+			        }else {
 			            System.out.println("\n\nAutomóvel cadastrado com sucesso!");
 			            if(a.getId() < 10) {
 		    				System.out.println("ID - 0"+a.getId());
@@ -95,11 +95,11 @@ public class AutomovelView {
 				
 				case 2:{
 					automoveis = (ArrayList <Automovel> ) this.findAll();
-			    	System.out.println("####  Listar Marca ####");
+			    	System.out.println("####  Listar Automoveis ####");
 			    	if(automoveis != null) {
 			    		automoveis.forEach((a) -> {
-			    			if(a.getId() < 10) {
-			    				System.out.println("ID - 0"+a.getId());
+			    			if(a.getId() <= 500) {
+			    				System.out.println("ID - "+a.getId());
 			    			}else {
 			    				System.out.println("ID - "+a.getId());
 			    			}
@@ -165,33 +165,33 @@ public class AutomovelView {
 			        }
 			        
 			        System.out.println("Informe os novos dados: ");
-			        System.out.println("COR ->");
+			        System.out.println("-> Cor: ");
 			        Scanner cor = new Scanner(System.in);
 			        automovel.setCor(cor.next());
 			        
-			        System.out.println("ANO DE FABRICAÇÃO -> ");
+			        System.out.println("-> Ano de Fabrição: ");
 			        Scanner ano_fabricacao = new Scanner(System.in);
-			        /*a1.setAno_fabricacao(ano_fabricacao.next());*/
+			        automovel.setAno_fabricacao(ano_fabricacao.next());
 			        
-			        System.out.println("ANO DO MODELO -> ");
+			        System.out.println("-> Ano do modelo: ");
 			        Scanner ano_modelo = new Scanner(System.in);
-			        /*a1.setAno_fabricacao(ano_fabricacao.next());*/
+			        automovel.setAno_modelo(ano_modelo.next());
 			        
-			        System.out.println("CHASSI -> ");
+			        System.out.println("-> Chassi: ");
 			        Scanner chassi = new Scanner(System.in);
-			        /*a1.setAno_fabricacao(ano_fabricacao.next());*/
+			        automovel.setChassi(chassi.next());
 			        
-			        System.out.println("PLACA -> ");
+			        System.out.println("-> Placa: ");
 			        Scanner placa = new Scanner(System.in);
-			        /*a1.setAno_fabricacao(ano_fabricacao.next());*/
+			        automovel.setPlaca(placa.next());
 			        
-			        System.out.println("KILOMETRAGEM -> ");
-			        Scanner km = new Scanner(System.in);
-			        /*a1.setAno_fabricacao(ano_fabricacao.next());*/
+			        System.out.println("-> Kilometragem: ");
+			        Scanner kilometragem = new Scanner(System.in);
+			        automovel.setKm(kilometragem.nextInt());
 			        
-			        System.out.println("VALOR -> ");
+			        System.out.println("Valor do automóvel: ");
 			        Scanner valor = new Scanner(System.in);
-			        /*a1.setAno_fabricacao(ano_fabricacao.next());*/
+			        automovel.setValor(valor.nextInt());
 			      
 					boolean resp = this.update(n, automovel);
 			        if(resp == true) {

@@ -1,22 +1,19 @@
 package controller;
-
 import entity.Marca;
 import entity.Modelo;
-import model.ModeloModel;
-
-import java.util.ArrayList;
 import java.util.List;
+import model.ModeloModel;
 
 public class ModeloController {
 
     ModeloModel modeloModel;
 
     public ModeloController() {
-        this.modeloModel = new ModeloModel();
+        modeloModel = new ModeloModel();
     }
 
     public Modelo save(Modelo modelo){
-        return this.modeloModel.save(modelo);
+        return modeloModel.save(modelo);
     }
 
     public boolean update(int id, Modelo m){
