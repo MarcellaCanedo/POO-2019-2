@@ -31,7 +31,11 @@ public class AutomovelController {
     	return automovelModel.findAll();
     }
 
-    public Automovel findById(Automovel a){
+    public Automovel findById(int a){
         return automovelModel.findById(a);
     }
+
+	public Automovel findById(Automovel a) {
+		return null;
+	}
 }

@@ -167,38 +167,31 @@ public class AutomovelView {
 			        Scanner cor = new Scanner(System.in);
 		            a1.setCor(cor.next());
 			        
-			        /*MODIFICARRRRRRRRRRRRRRRRRR*/
 			        System.out.println("ANO DE FABRICAÇÃO -> ");
 			        Scanner ano_fabricacao = new Scanner(System.in);
-			        a1.setAno_fabricacao(Ano_fabricacao.next());
+			        /*a1.setAno_fabricacao(ano_fabricacao.next());*/
 			        
 			        System.out.println("ANO DO MODELO -> ");
 			        Scanner ano_modelo = new Scanner(System.in);
-			        a1.setAno_fabricacao(Ano_fabricacao.next());
+			        /*a1.setAno_fabricacao(ano_fabricacao.next());*/
 			        
 			        System.out.println("CHASSI -> ");
 			        Scanner chassi = new Scanner(System.in);
-			        a1.setAno_fabricacao(Ano_fabricacao.next());
+			        /*a1.setAno_fabricacao(ano_fabricacao.next());*/
 			        
 			        System.out.println("PLACA -> ");
 			        Scanner placa = new Scanner(System.in);
-			        a1.setAno_fabricacao(Ano_fabricacao.next());
+			        /*a1.setAno_fabricacao(ano_fabricacao.next());*/
 			        
 			        System.out.println("KILOMETRAGEM -> ");
 			        Scanner km = new Scanner(System.in);
-			        a1.setAno_fabricacao(Ano_fabricacao.next());
+			        /*a1.setAno_fabricacao(ano_fabricacao.next());*/
 			        
 			        System.out.println("VALOR -> ");
 			        Scanner valor = new Scanner(System.in);
-			        a1.setAno_fabricacao(Ano_fabricacao.next());
-			        
-			        
-			        
-			        System.out.println("\nInforme o novo nome da Marca:");
-			        Scanner nome = new Scanner(System.in);
-			        m.setNome(nome.next());
-
-			        boolean resp = this.update(n, m);
+			        /*a1.setAno_fabricacao(ano_fabricacao.next());*/
+			       
+					boolean resp = this.update(a, a1);
 			        if(resp == true) {
 			        	System.out.println("Informações do automóvel alteradas!");
 			        }

@@ -129,12 +129,12 @@ public class AutomovelModel {
         return automoveis;
     }
 
-    public Automovel findById(float a2){
+    public Automovel findById(int a2){
     	String SQL = "SELECT * FROM automovel WHERE idautomovel = ?";
     	
     	try {
     		PreparedStatement ps = connection.prepareStatement(SQL);
-	    	ps.setFloat(1, a2);
+	    	ps.setInt(1, a2);
 	    		    	
 	    	ResultSet rs = ps.executeQuery();
 	    	

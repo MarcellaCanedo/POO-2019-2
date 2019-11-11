@@ -3,133 +3,132 @@ package view;
 import controller.MarcaController;
 import entity.Automovel;
 import entity.Marca;
-
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
+import java.util.List;
+import java.util.ArrayList;
 
 public class MarcaView {
-
     MarcaController marcaController;
     
     ArrayList<Marca> marcas = new ArrayList<Marca>();
-
-    public MarcaView() {
-        this.marcaController = new MarcaController();
-    }
+    
+    public MarcaView() {  marcaController = new MarcaController(); }
 
     public void menuMarca(){
     	
-    	int op;
-    	System.out.println("Menu Automóvel");
-    	System.out.println("1 - Cadastrar");
-    	System.out.println("2 - Listar");
-    	System.out.println("3 - Buscar");
-    	System.out.println("4 - Alterar");
-    	System.out.println("5 - Excluir");
-    	System.out.println("0 - Voltar");
+    	int opp;
+    	System.out.println("####  Menu Marcas ####");
+    	System.out.println("1- Cadastrar");
+    	System.out.println("2- Listar");
+    	System.out.println("3- Buscar");
+    	System.out.println("4- Alterar");
+    	System.out.println("5- Excluir");
+    	System.out.println("00- Voltar");
     	Scanner sc = new Scanner(System.in);
-    	op = sc.nextInt();
     	
-    	switch (op) {
+    	opp = sc.nextInt();
+    	
+    	switch (opp) {
 			
 			case 1:{
-				System.out.println("Cadastrar Automovel: ");
-				Automovel a = new Automovel();
-		        Scanner c = new Scanner(System.in);
-		        
-		        System.out.println("Informe o nome da Marca:");
-		        Marca m = null;
-				m.setNome(c.nextLine());
-		        Marca m2 = this.save(m);
+				
+				Scanner sc1 = new Scanner(System.in);
+				Marca marca = new Marca();
+				
+		        System.out.println("\n-->  Digite o nome da Marca:");
+				marca.setNome(sc1.nextLine());
+		        Marca cmarca = save(marca);
 
-		        if(m2 == null){
-		            System.out.println("\n\nMarca não foi cadastrada!\n\n");
-		        } else {
-		            System.out.println("\n\nMarca cadastrada com sucesso!");
-		            if(m2.getId() < 10) {
-	    				System.out.println("ID - 0"+m2.getId());
-	    			}else {
-	    				System.out.println("ID - "+m2.getId());
+		        if(cmarca.getNome() == null || cmarca.getNome().trim().equals("")){ 
+		            System.out.println("\nMarca não cadastrada, campo obrigatório!\n");
+		        } else{
+		            System.out.println("\nMarca cadastrada com sucesso!\n");
+		            
+		            if(cmarca.getId() <= 500) 
+		            {
+	    				System.out.println("ID -->  " +cmarca.getId());
 	    			}
-		            System.out.println("NOME - "+m2.getNome());
+		            System.out.println("Nome --> " +cmarca.getNome());
 		        }
 		        
-		        this.menuMarca();
+		        System.out.println("\n");
+		        menuMarca();
 		        break;
 	        }
 			
 			case 2:{
 				marcas = (ArrayList<Marca>) this.findAll();
-		    	System.out.println("========== Listar Marca ==========");
-		    	if(marcas != null) {
+				
+		    	System.out.println("####  Listar Marca  ####");
+		    	if(this.marcas != null) {
 		    		marcas.forEach((m) -> {
-		    			if(m.getId() < 10) {
-		    				System.out.println("ID - 0"+m.getId());
-		    			}else {
-		    				System.out.println("ID - "+m.getId());
+		    			if(m.getId() <= 500) {
+		    				System.out.println("ID --> 0"+m.getId());
 		    			}
-			            System.out.println("NOME - "+m.getNome());
-			            System.out.println("----------------------------------");
+			            System.out.println("Nome --> "+m.getNome());
+			            System.out.println("-----------------------");
 		    		});
 		    	}else {
-		    		System.out.println("Não há marcas cadastradas!");
+		    		System.out.println("Nenhuma marca encontrada na base de dados!");
 		    	}
-		    	System.out.println("\n");
 		    	
-				this.menuMarca();
+		    	System.out.println("\n");
+				menuMarca();
 		        break;
 	        }
 			
 			case 3:{
-				System.out.println("========== Buscar Marca ==========");
-				Scanner c = new Scanner(System.in);
-				System.out.println("Informe o código da Marca:");
-		        int n = c.nextInt();
-		        Marca m = new Marca();
-				m = this.findById(n);
-				if(m != null) {
-					if(m.getId() < 10) {
-	    				System.out.println("ID - 0"+m.getId());
+				System.out.println("####  Buscar Marca ####");
+				Scanner sci = new Scanner(System.in);
+				
+				System.out.println("-->  Informe o ID da Marca cadastrada:");
+				Marca bmarca = new Marca();
+			
+		        int num = sci.nextInt();
+				bmarca = this.findById(num);
+				if(bmarca != null) {
+					if(bmarca.getId() <= 50) {
+	    				System.out.println("ID --> " + bmarca.getId());
 	    			}else {
-	    				System.out.println("ID - "+m.getId());
+	    				System.out.println("ID --> " + bmarca.getId());
 	    			}
-		            System.out.println("NOME - "+m.getNome());
+		            System.out.println("Nome --> "+ bmarca.getNome());
 				}
-				else {
-					System.out.println("Este código não existe!\n");
+				else{
+					System.out.println("Código não cadastrado na base de dados!\n");
 				}
-				System.out.println("\n");
-				this.menuMarca();
+			
+				menuMarca();
 		        break;
 	        }
 			
 			case 4:{
-				System.out.println("========== Alterar Marca ==========");
-				Scanner c = new Scanner(System.in);
-				System.out.println("Informe o código da Marca:");
-		        int n = c.nextInt();
-		        Marca m = this.findById(n);
-		        if(m == null) {
+				System.out.println("####  Alterar Marca  ####");
+				Scanner sci = new Scanner(System.in);
+				System.out.println("Insira o código da marca:");
+				int n = sci.nextInt();
+				
+		        Marca marca = this.findById(n);
+		        if(marca == null) {
 		        	System.out.println("Este código não existe!\n");
 		        	this.menuMarca();
 		        }
 		        else {
 		        	System.out.println("Id     Marca");
-		        	if(m.getId() < 10) {
-	    				System.out.println("ID - 0"+m.getId());
+		        	if(marca.getId() < 10) {
+	    				System.out.println("ID - 0"+marca.getId());
 	    			}else {
-	    				System.out.println("ID - "+m.getId());
+	    				System.out.println("ID - "+marca.getId());
 	    			}
-		            System.out.println("NOME - "+m.getNome());
+		            System.out.println("NOME - "+marca.getNome());
 		        }
 		        
 		        
 		        System.out.println("\nInforme o novo nome da Marca:");
 		        Scanner nome = new Scanner(System.in);
-		        m.setNome(nome.next());
+		        marca.setNome(nome.next());
 
-		        boolean r = this.update(n, m);
+		        boolean r = this.update(n, marca);
 		        if(r == true) {
 		        	System.out.println("Marca alterada com sucesso!");
 		        }
