@@ -20,7 +20,7 @@ public class AutomovelModel {
 
     public Automovel save(Automovel automovel){
 
-        String SQL = "INSERT INTO marca VALUES (? ,? ,?, ?, ?, ?, ?, ?)";
+        String SQL = "INSERT INTO marca VALUES (? ,? , ?, ?, ?, ?, ?, ?)";
 
         try{
             PreparedStatement ps = connection.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
@@ -31,16 +31,16 @@ public class AutomovelModel {
             ps.setString(5,automovel.getChassi());
             ps.setString(6,automovel.getPlaca());
             ps.setInt(7,automovel.getKm());
-            ps.setFloat(3,automovel.getValor());
+            ps.setFloat(8,automovel.getValor());
             ps.executeUpdate();
-            int count = 0;
+            int cont= 0;
             
             ResultSet rs = ps.getGeneratedKeys();
             if(rs.next()){
             	automovel.setId(rs.getInt(1));
-                count++;
+                cont++;
             }
-            if(count > 0) {
+            if(cont > 0) {
             	return automovel;
             }
             else {
@@ -51,18 +51,17 @@ public class AutomovelModel {
         } catch (Exception e){
             System.out.println(e.getMessage());
         }
-        /*System.out.println(" AQUI 2");*/
         return null;
     }
 
-    public boolean update(int idautomovel, Automovel a){
+    public boolean update(int a1, Automovel a){
     	
     	String sql = "UPDATE automovel SET placa=? WHERE idautomovel=?";
 
     	try { 
 	    	PreparedStatement ps = connection.prepareStatement(sql);
 	    	ps.setString(1, a.getPlaca());
-	    	ps.setInt(2, idautomovel);
+	    	ps.setInt(2, a1);
 	    	 
 	    	int rowsUpdated = ps.executeUpdate();
 	    	if (rowsUpdated > 0) {
@@ -103,7 +102,7 @@ public class AutomovelModel {
     	String SQL = "SELECT * FROM automovel ORDER BY idautomovel";
     	
     	ArrayList<Automovel> automoveis = new ArrayList<Automovel>();
-    	int count = 0;
+    	int cont = 0;
     	
     	try {
     	
@@ -117,13 +116,13 @@ public class AutomovelModel {
 	    	    a.setPlaca(rs.getString("Placa" ));
 
 	    	    automoveis.add(a);
-	    	    count++;
+	    	    cont++;
 	    	}
 
         } catch (Exception e){
             System.out.println(e.getMessage());
         }
-    	if(count < 1) {
+    	if(cont < 1) {
     		return null;
     	}
         return automoveis;

@@ -106,19 +106,17 @@ public class MarcaView {
 				System.out.println("####  Alterar Marca  ####");
 				Scanner sci = new Scanner(System.in);
 				System.out.println("Insira o código da marca:");
-				int n = sci.nextInt();
+				int num = sci.nextInt();
 				
-		        Marca marca = this.findById(n);
+		        Marca marca = this.findById(num);
 		        if(marca == null) {
 		        	System.out.println("Este código não existe!\n");
 		        	this.menuMarca();
 		        }
 		        else {
 		        	System.out.println("Id     Marca");
-		        	if(marca.getId() < 10) {
-	    				System.out.println("ID - 0"+marca.getId());
-	    			}else {
-	    				System.out.println("ID - "+marca.getId());
+		        	if(marca.getId() <= 500) {
+	    				System.out.println("ID -->  "+marca.getId());
 	    			}
 		            System.out.println("NOME - "+marca.getNome());
 		        }
@@ -128,32 +126,32 @@ public class MarcaView {
 		        Scanner nome = new Scanner(System.in);
 		        marca.setNome(nome.next());
 
-		        boolean r = this.update(n, marca);
-		        if(r == true) {
-		        	System.out.println("Marca alterada com sucesso!");
+		        boolean resp = this.update(num, marca);
+		        if(resp == true) {
+		        	System.out.println("Marca Alterada com sucesso!");
 		        }
 		        else {
-		        	System.out.println("A marca não foi alterada ou não existe!");
+		        	System.out.println("Marca não existente!!");
 		        }
 		        
-		        this.menuMarca();
+		        menuMarca();
 		        break;
 	        }
 			
 			case 5:{
-				System.out.println("========== Excluir Marca ==========");
+				System.out.println("####  Excluir Marca  ####");
 				Scanner c = new Scanner(System.in);
-				System.out.println("Informe o código da Marca:");
-		        int n = c.nextInt();
-		        boolean r = this.delete(n);
-		        if(r == true) {
-		        	System.out.println("Marca excluída com sucesso!");
+				System.out.println("Informe o ID da marca:");
+		        int num = c.nextInt();
+		        boolean resp = this.delete(num);
+		        if(resp == true) {
+		        	System.out.println("Marca excluída!!!");
 		        }
 		        else {
-		        	System.out.println("A marca não foi excluída ou não existe!");
+		        	System.out.println("Marca não existente!");
 		        }
 		        
-				this.menuMarca();
+				menuMarca();
 		        break;
 	        }
 			

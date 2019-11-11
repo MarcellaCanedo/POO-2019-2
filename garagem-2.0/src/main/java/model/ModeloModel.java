@@ -22,7 +22,7 @@ public class ModeloModel {
 
     public Modelo save(Modelo Modelo){
 
-        String SQL = "INSERT INTO modelo VALUES (?,?,?,?)";
+        String SQL = "INSERT INTO modelo VALUES ( ?, ?, ?, ?)";
 
         try{
 
@@ -34,7 +34,7 @@ public class ModeloModel {
 
             ps.executeUpdate();
 
-            int count = 0;
+            int cont = 0;
             
             ResultSet rs = ps.getGeneratedKeys();
             if(rs.next()){
@@ -45,9 +45,9 @@ public class ModeloModel {
                 Marca marca = new Marca();
                 marca = this.selectMarca(i);
                 Modelo.setMarca(marca);
-                count++;
+                cont++;
             }
-            if(count > 0) {
+            if(cont > 0) {
             	return Modelo;
             }
             else {
@@ -112,7 +112,7 @@ public class ModeloModel {
     	String SQL = "SELECT * FROM modelo ORDER BY idmodelo";
     	
     	ArrayList<Modelo> Modelos = new ArrayList<Modelo>();
-    	int count = 0;
+    	int cont = 0;
     	
     	try {
     	
@@ -131,13 +131,13 @@ public class ModeloModel {
                 modelo.setMarca(marca);
 	    	    
 	    	    Modelos.add(modelo);
-	    	    count++;
+	    	    cont++;
 	    	}
 
         } catch (Exception e){
             System.out.println(e.getMessage());
         }
-    	if(count < 1) {
+    	if(cont < 1) {
     		return null;
     	}
         return Modelos;

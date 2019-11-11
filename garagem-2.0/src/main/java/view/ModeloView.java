@@ -2,18 +2,21 @@ package view;
 
 import controller.ModeloController;
 import entity.Marca;
-import entity.Modelo;
 import model.MarcaModel;
-
+import entity.Modelo;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+
+import com.mysql.jdbc.Statement;
 
 public class ModeloView {
 
     ModeloController ModeloController;
     
     ArrayList<Modelo> modelos = new ArrayList<Modelo>();
+
+	private String sql;
 
     public ModeloView() {
         this.ModeloController = new ModeloController();
@@ -24,32 +27,30 @@ public class ModeloView {
     	int op = 0;
     	
     	System.out.println("Menu Modelo: ");
-    	System.out.println("1 - Cadastrar");
-    	System.out.println("2 - Listar");
-    	System.out.println("3 - Buscar");
-    	System.out.println("4 - Alterar");
-    	System.out.println("5 - Excluir");
-    	System.out.println("0 - Voltar");
+    	System.out.println("1- Cadastrar");
+    	System.out.println("2- Listar");
+    	System.out.println("3- Buscar");
+    	System.out.println("4- Alterar");
+    	System.out.println("5- Excluir");
+    	System.out.println("00- Voltar");
     	
     	Scanner sc = new Scanner(System.in);
-    	
     	op = sc.nextInt();
     	
     	switch (op) {
 			
 			case 1:{
-				System.out.println("Cadastrar Modelo:");
-		        Modelo m = new Modelo();
+		        Modelo cmodelo = new Modelo();
 		        Scanner c = new Scanner(System.in);
 		        
 		        System.out.println("Informe o nome do Modelo:");
-		        m.setNome(c.nextLine());
+		        cmodelo.setNome(c.nextLine());
 		        
 		        System.out.println("Informe o tipo do Modelo:");
-		        m.setTipo(c.nextLine());
+		        cmodelo.setTipo(c.nextLine());
 		        
-		        System.out.println("Informe o código da Marca deste Modelo:"); //Código da marca == ID
-		        String sql = "select * marca where marca_idmarca = ?";
+		        System.out.println("Informe o código da Marca deste Modelo:"); 
+		        String sql = "select * FROM garagem.marca where marca_idmarca =?";
 		        Marca marca = new Marca();
 		        
 		        marca = this.selectMarca(c.nextInt());
@@ -61,9 +62,9 @@ public class ModeloView {
 		        	System.out.println("Marca: "+marca.getNome());
 		        }
 		        
-		        m.setMarca(marca);
+		        cmodelo.setMarca(marca);
 		        
-		        Modelo m2 = this.save(m);
+		        Modelo m2 = this.save(cmodelo);
 
 		        if(m2 == null){
 		            System.out.println("\n\nModelo não foi cadastrado!\n\n");

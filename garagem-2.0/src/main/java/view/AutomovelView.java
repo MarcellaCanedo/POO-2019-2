@@ -20,6 +20,8 @@ public class AutomovelView {
 	    
 	    ArrayList<Automovel> automoveis = new ArrayList<Automovel>();
 
+		private Automovel bautomovel;
+
 	    public AutomovelView() {
 	        this.automovelController = new AutomovelController();
 	    }
@@ -120,17 +122,17 @@ public class AutomovelView {
 					Scanner c = new Scanner(System.in);
 					System.out.println("Informe o código do Automóvel:");
 			        int n = c.nextInt();
-			        Automovel a = new Automovel();
-					a = this.findById(a);
-					if(a != null) {
-						if(a.getId() < 10) {
-		    				System.out.println("ID - 0"+a.getId());
+			        Automovel bautomovel = new Automovel();
+			        bautomovel = findById(bautomovel);
+					if(bautomovel != null) {
+						if(bautomovel.getId() < 10) {
+		    				System.out.println("ID - 0"+bautomovel.getId());
 		    			}else {
-		    				System.out.println("ID - "+a.getId());
+		    				System.out.println("ID - "+bautomovel.getId());
 		    			}
-						System.out.println("COR -> "+a.getPlaca());
-			            System.out.println("PLACA -> "+a.getPlaca());
-			            System.out.println("VALOR -> "+a.getValor());
+						System.out.println("COR -> "+bautomovel.getPlaca());
+			            System.out.println("PLACA -> "+bautomovel.getPlaca());
+			            System.out.println("VALOR -> "+bautomovel.getValor());
 					}
 					else {
 						System.out.println("Esta placa ainda não existe!!\n");
@@ -141,31 +143,31 @@ public class AutomovelView {
 		        }
 				
 				case 4:{
-					System.out.println("####  Alterar Marca  ####");
+					System.out.println("####  Alterar Automóvel  ####");
 					Scanner c = new Scanner(System.in);
 					System.out.println("Informe a Placa do Automóvel:");
-			        int a = c.nextInt();
-			        Automovel a1 = this.findById(a1);
-			        if(a1 == null) {
+			        int n = c.nextInt();
+			        Automovel automovel = this.findById(bautomovel);
+			        if(automovel == null) {
 			        	System.out.println("Este código não existe!\n");
 			        	menuAutomovel();
 			        }
 			        else {
 			        	System.out.println("Id  Automovel");
-			        	if(a1.getId() < 10) {
-		    				System.out.println("ID - 0"+a1.getId());
+			        	if(automovel.getId() < 10) {
+		    				System.out.println("ID - 0"+automovel.getId());
 		    			}else {
-		    				System.out.println("ID - "+a1.getId());
+		    				System.out.println("ID - "+automovel.getId());
 		    			}
-			        	System.out.println("COR -> "+a1.getPlaca());
-			            System.out.println("PLACA -> "+a1.getPlaca());
-			            System.out.println("VALOR -> "+a1.getValor());
+			        	System.out.println("COR -> "+automovel.getPlaca());
+			            System.out.println("PLACA -> "+automovel.getPlaca());
+			            System.out.println("VALOR -> "+automovel.getValor());
 			        }
 			        
 			        System.out.println("Informe os novos dados: ");
 			        System.out.println("COR ->");
 			        Scanner cor = new Scanner(System.in);
-		            a1.setCor(cor.next());
+			        automovel.setCor(cor.next());
 			        
 			        System.out.println("ANO DE FABRICAÇÃO -> ");
 			        Scanner ano_fabricacao = new Scanner(System.in);
@@ -190,8 +192,8 @@ public class AutomovelView {
 			        System.out.println("VALOR -> ");
 			        Scanner valor = new Scanner(System.in);
 			        /*a1.setAno_fabricacao(ano_fabricacao.next());*/
-			       
-					boolean resp = this.update(a, a1);
+			      
+					boolean resp = this.update(n, automovel);
 			        if(resp == true) {
 			        	System.out.println("Informações do automóvel alteradas!");
 			        }
@@ -227,13 +229,12 @@ public class AutomovelView {
 	    	}
 	    }
 
-
-	    public Automovel save(Automovel a){
+		public Automovel save(Automovel a){
 	    	return automovelController.save(a);
 	    }
 
-	    public boolean update(int idautomovel, Automovel a){
-	        return automovelController.update(idautomovel, a);
+	    public boolean update(int n, Automovel aautomovel){
+	        return automovelController.update(n, aautomovel);
 	    }
 
 	    public boolean delete(int idautomovel){
@@ -244,9 +245,7 @@ public class AutomovelView {
 	    	return automovelController.findAll();
 	    }
 
-	    public Automovel findById(Automovel a){
-	    	return automovelController.findById(a);
+	    public Automovel findById(Automovel bautomovel){
+	    	return automovelController.findById(bautomovel);
 	    }
-
-	
 }

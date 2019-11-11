@@ -2,24 +2,22 @@ package model;
 
 import config.SQLConnection;
 import entity.Marca;
+import java.sql.ResultSet;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.util.ArrayList;
-import java.util.List;
 import com.mysql.jdbc.Statement;
+import java.util.List;
+import java.util.ArrayList;
 
 public class MarcaModel {
 
     static Connection connection = null;
 
-    public MarcaModel() {
-        this.connection = SQLConnection.getConnection();
-    }
+    public MarcaModel() { this.connection = SQLConnection.getConnection(); }
 
     public Marca save(Marca marca){
 
-        String SQL = "INSERT INTO marca VALUES (?,?)";
+        String SQL = "insert into marca values ( ? , ? )";
 
         try{
 
@@ -27,25 +25,23 @@ public class MarcaModel {
             ps.setString(1, "0");
             ps.setString(2, marca.getNome());
             ps.executeUpdate();
-            int count = 0;
+            int cont = 0;
             
             ResultSet rs = ps.getGeneratedKeys();
             if(rs.next()){
                 marca.setId(rs.getInt(1));
-                count++;
+                cont++;
             }
-            if(count > 0) {
+            if(cont > 0) {
             	return marca;
             }
             else {
             	return null;
             }
 
-
         } catch (Exception e){
             System.out.println(e.getMessage());
         }
-        /*System.out.println(" AQUI 2");*/
         return null;
     }
 
@@ -97,7 +93,7 @@ public class MarcaModel {
     	String SQL = "SELECT * FROM marca ORDER BY idmarca";
     	
     	ArrayList<Marca> marcas = new ArrayList<Marca>();
-    	int count = 0;
+    	int cont = 0;
     	
     	try {
     	
@@ -111,13 +107,13 @@ public class MarcaModel {
 	    	    m.setNome(rs.getString("nome" ));
 
 	    	    marcas.add(m);
-	    	    count++;
+	    	    cont++;
 	    	}
 
         } catch (Exception e){
             System.out.println(e.getMessage());
         }
-    	if(count < 1) {
+    	if(cont < 1) {
     		return null;
     	}
         return marcas;

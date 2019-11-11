@@ -19,8 +19,8 @@ public class AutomovelController {
 
     }
 
-    public boolean update(int idautomovel, Automovel a){
-        return automovelModel.update(idautomovel, a);
+    public boolean update(int n, Automovel automovel){
+        return automovelModel.update(n, automovel);
     }
 
     public boolean delete(int idautomovel){
@@ -38,4 +38,5 @@ public class AutomovelController {
 	public Automovel findById(Automovel a) {
 		return null;
 	}
+
 }
