@@ -1,13 +1,22 @@
 package entity;
 
-public class Pessoa {
+public class Pessoa{
 	
-	private int id;
-    private String nome;
-    private String endereco;
-    private String telefone;
-    private String dt_nascimento;
+	protected int id;
+    protected String nome;
+    protected String endereco;
+    protected String telefone;
+    protected String dt_nascimento;
     
+    public Pessoa(int id, String nome, String endereco, String telefone, String dt_nascimento) {
+    	setId(id);
+    	setNome(nome);
+    	setEndereco(endereco);
+    	setTelefone(telefone);
+    	setDt_nascimento(dt_nascimento);	
+    }
+    public Pessoa() {
+    }
     
     public int getId() {
         return id;
