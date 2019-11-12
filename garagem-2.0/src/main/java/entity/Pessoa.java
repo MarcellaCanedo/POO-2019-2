@@ -8,13 +8,6 @@ public class Pessoa{
     protected String telefone;
     protected String dt_nascimento;
     
-    public Pessoa(int id, String nome, String endereco, String telefone, String dt_nascimento) {
-    	setId(id);
-    	setNome(nome);
-    	setEndereco(endereco);
-    	setTelefone(telefone);
-    	setDt_nascimento(dt_nascimento);	
-    }
     public Pessoa() {
     }
     
@@ -32,7 +25,7 @@ public class Pessoa{
     }
 
     public void setNome(String nome) {
-        this.nome = nome;
+       this.nome = nome;
     }
     
     public String getEndereco() {
