@@ -7,6 +7,10 @@ public abstract class Funcionario extends Pessoa {
 	String senha;
 	float salario;
 	
-	public float calcularSalario();
+	public abstract float calcularSalario();
+
+	public abstract int getCodigo();
+
+	public abstract String getUsuario();
 	
 }

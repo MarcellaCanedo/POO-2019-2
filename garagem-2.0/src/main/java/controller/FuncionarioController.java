@@ -18,20 +18,4 @@ public class FuncionarioController {
 	    public Funcionario save(Funcionario funcionario){
 	        return this.funcionarioModel.save(funcionario);
 	    }
-
-	    public boolean update(int id, Funcionario f){
-	        return funcionarioModel.update(id, f);
-	    }
-
-	    public boolean delete(int id){
-	        return funcionarioModel.delete(id);
-	    }
-
-	    public List<Marca> findAll(){
-	    	return funcionarioModel.findAll();
-	    }
-
-	    public Funcionario findById(int id){
-	        return funcionarioModel.findById(id);
-	    }
 }
