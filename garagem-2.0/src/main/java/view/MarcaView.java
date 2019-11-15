@@ -88,11 +88,10 @@ public class MarcaView {
 				bmarca = this.findById(num);
 				if(bmarca != null) {
 					if(bmarca.getId() <= 50) {
-	    				System.out.println("ID --> " + bmarca.getId());
-	    			}else {
-	    				System.out.println("ID --> " + bmarca.getId());
+	    				System.out.println("\nID --> " + bmarca.getId());
 	    			}
 		            System.out.println("Nome --> "+ bmarca.getNome());
+		            System.out.println("\n");
 				}
 				else{
 					System.out.println("Código não cadastrado na base de dados!\n");

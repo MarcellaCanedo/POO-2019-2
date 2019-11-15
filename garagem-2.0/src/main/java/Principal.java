@@ -59,7 +59,6 @@ public class Principal {
 		        
 	        }
     	    	
-    		
     		case 2:{
     			FuncionarioView funcionariov = new FuncionarioView();
     			funcionariov.menuFuncionario();
