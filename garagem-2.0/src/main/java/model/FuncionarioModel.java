@@ -17,7 +17,7 @@ public class FuncionarioModel {
 
 	    public Funcionario save(Funcionario funcionario){
 
-	        String SQL = "insert into marca values (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+	        String SQL = "insert into marca values (?, ?, ?, ?, ?, ?, ?, ?)";
 
 	        try{
 
@@ -104,7 +104,7 @@ public class FuncionarioModel {
 
 	    public List<Funcionario> findAll(){
 	    	
-	    	String SQL = "SELECT * FROM funcionario ORDER BY idmarca";
+	    	String SQL = "SELECT * FROM funcionario ORDER BY idfuncionario";
 	    	
 	    	ArrayList<Funcionario> funcionarios = new ArrayList<Funcionario>();
 	    	int cont = 0;

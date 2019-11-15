@@ -2,17 +2,27 @@ package view;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+
 import controller.FuncionarioController;
 import entity.Funcionario;
+import entity.Gerente;
+import entity.Badeco;
 
 public class FuncionarioView{
 	
-	FuncionarioController funcionarioController;
-    
+	private FuncionarioController funcionarioController;
+    private Scanner sc;
+	
     ArrayList <Funcionario> funcionarios = new ArrayList<Funcionario>();
 	int op;
+
+	private Funcionario funcionario;
     
-    public FuncionarioView() {  funcionarioController = new FuncionarioController(); }
+    public FuncionarioView() {
+    	this.funcionarioController = new FuncionarioController(); 
+    	this.sc = new Scanner(System.in);
+    	this.funcionario = new Funcionario();
+    }
 
     public void menuFuncionario(){
     	
@@ -25,59 +35,64 @@ public class FuncionarioView{
     	System.out.println("5- Excluir");
     	System.out.println("00- Voltar");
     	Scanner sc = new Scanner(System.in);
-    	
     	opp = sc.nextInt();
     	
     	switch (opp) {
-			
 			case 1:{
-		        
-				Funcionario funcionario = new Funcionario();
-				Scanner f = new Scanner(System.in);
-				
-				 System.out.println("\n###  Cadastro de Funcionário  ###");
-				
-		        System.out.println("\nNome --> ");
-		        funcionario.setNome(sc.next());
 
-		        System.out.println("\nCPF --> ");
-		        funcionario.setCpf(sc.next());
-		        
-		        System.out.println("\nEndereço --> ");
-		        funcionario.setEndereco(sc.next());
-		        
-		        System.out.println("\nTelefone --> ");
-		        funcionario.setTelefone(sc.next());
+				System.out.println("1 - Gerente");
+		        System.out.println("2 - Funcionario");
+		        System.out.println("3 - Badeco");
 
-		        System.out.println("\nData de nascimento --> ");
-		        funcionario.setDt_nascimento(sc.next());
-		        
-		        System.out.println("\nCódigo --> ");
-		        funcionario.setCodigo(sc.nextInt());
-		        
-		        System.out.println("\nUsuário --> ");
-		        funcionario.setUsuario(sc.next());
-		        
-		        System.out.println("\nSenha --> ");
-		        funcionario.setSenha(sc.next());
-    
-		        System.out.println("\nSalário --> ");
-		        funcionario.setSalario(sc.nextFloat());
-		        
-		        if(funcionario == null){ 
-		            System.out.println("\nFuncionário não cadastrado, campo obrigatório!\n");
-		        } else{
-		            System.out.println("\nFuncionário cadastrado com sucesso!\n");
-		            
-		            if(funcionario.getId() <= 500) 
-		            {
-	    				System.out.println("ID -->  " +funcionario.getId());
-	    			}
-		            System.out.println("Nome --> " +funcionario.getNome());
-		            System.out.println("Codigo --> " +funcionario.getCodigo());
-		            System.out.println("CPF --> " +funcionario.getCpf());
-		            System.out.println("Salário --> " +funcionario.getSalario());
+		        Scanner sc1 = new Scanner(System.in);
+		        int op = sc1.nextInt();
+		        switch (op){
+		            case 1:
+		                this.funcionario = new Gerente(null, op);
+		                funcionario.setCargo("Gerente");
+		                break;
+		            case 2:
+		                this.funcionario = new Funcionario();
+		                funcionario.setCargo("Funcionario");
+		                break;
+		            case 3:
+		                this.funcionario = new Badeco();
+		                funcionario.setCargo("Badeco");
+		                break;
 		        }
+
+		        sc1.nextLine();
+
+		        System.out.println("Nome: ");
+		        funcionario.setNome(sc1.nextLine());
+
+		        System.out.println("CPF: ");
+		        funcionario.setCpf(sc1.nextLine());
+
+		        System.out.println("Endereço: ");
+		        funcionario.setEndereco(sc1.nextLine());
+
+		        System.out.println("Telefone: ");
+		        funcionario.setTelefone(sc1.nextLine());
+
+		        System.out.println("Data de nascimento: ");
+		        funcionario.setDt_nascimento(sc1.nextLine());
+
+		        System.out.println("Codigo: ");
+		        funcionario.setCodigo(sc1.nextInt());
+
+		        System.out.println("Usuario: ");
+		        funcionario.setUsuario(sc1.nextLine());
+
+		        System.out.println("Senha: ");
+		        funcionario.setSenha(sc1.nextLine());
+
+		       if (funcionarioController.update(op, funcionario)){
+		           System.out.println("Sucesso ao cadastrar funcionario");
+		       }else{
+		           System.out.println("Erro ao cadastrar funcionario, tente novamente");
+		       }
+
 		        
 		        System.out.println("\n");
 		        menuFuncionario();

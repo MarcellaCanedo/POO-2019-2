@@ -65,11 +65,11 @@ public class Principal {
     			menuPrincipal();
     		}
     		
-    		case 3: {
+    		/*case 3: {
     			ClienteView clientev = new ClienteView();
     			clientev.menuCliente();
     			menuPrincipal();
-    		}
+    		}*/
     	
     		
     		case 0: default:{

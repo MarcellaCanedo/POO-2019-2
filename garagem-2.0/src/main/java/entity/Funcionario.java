@@ -65,8 +65,8 @@ public class Funcionario {
 			return codigo;
 		}
 
-		public <Int> Int setCodigo(int codigo) {
-			this.codigo = codigo;
+		public <Int> Int setCodigo(Int codigo) {
+			this.codigo = (int) codigo;
 			return null;
 		}
 
@@ -95,6 +95,11 @@ public class Funcionario {
 		}
 
 		public void add(Funcionario func) {
+			
+		}
+
+		public void setCargo(String string) {
+			// TODO Auto-generated method stub
 			
 		}
 }

@@ -1,6 +1,9 @@
 package controller;
 import java.util.List;
 
+import entity.Cliente;
+import model.ClienteModel;
+
 public class ClienteController {
 
 	ClienteModel clienteModel;

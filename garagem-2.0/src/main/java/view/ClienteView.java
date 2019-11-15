@@ -2,8 +2,10 @@ package view;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+
+import controller.ClienteController;
 import controller.FuncionarioController;
-import entity.Funcionario;
+import entity.Cliente;
 
 public class ClienteView {
 
@@ -14,10 +16,10 @@ public class ClienteView {
     
     public ClienteView() {  clienteController = new ClienteController(); }
 
-    public void menuFuncionario(){
+    public void menuCliente(){
     	
     	int opp;
-    	System.out.println("####  Menu Funcionário ####");
+    	System.out.println("####  Menu Cliente ####");
     	System.out.println("1- Cadastrar");
     	System.out.println("2- Listar");
     	System.out.println("3- Buscar");
@@ -32,64 +34,58 @@ public class ClienteView {
 			
 			case 1:{
 		        
-				Funcionario funcionario = new Funcionario();
+				Cliente cliente = new Cliente();
 				Scanner f = new Scanner(System.in);
 				
-				 System.out.println("\n###  Cadastro de Funcionário  ###");
+				 System.out.println("\n###  Cadastro de Cliente  ###");
 				
 		        System.out.println("\nNome --> ");
-		        funcionario.setNome(sc.next());
+		        cliente.setNome(sc.next());
 
 		        System.out.println("\nCPF --> ");
-		        funcionario.setCpf(sc.next());
+		        cliente.setCpf(sc.next());
 		        
 		        System.out.println("\nEndereço --> ");
-		        funcionario.setEndereco(sc.next());
+		        cliente.setEndereco(sc.next());
 		        
 		        System.out.println("\nTelefone --> ");
-		        funcionario.setTelefone(sc.next());
+		        cliente.setTelefone(sc.next());
 
 		        System.out.println("\nData de nascimento --> ");
-		        funcionario.setDt_nascimento(sc.next());
+		        cliente.setDt_nascimento(sc.next());
 		        
 		        System.out.println("\nCódigo --> ");
-		        funcionario.setCodigo(sc.nextInt());
-		        
-		        System.out.println("\nUsuário --> ");
-		        funcionario.setUsuario(sc.next());
-		        
-		        System.out.println("\nSenha --> ");
-		        funcionario.setSenha(sc.next());
+		        cliente.setCodigo(sc.nextInt());
     
 		        System.out.println("\nSalário --> ");
-		        funcionario.setSalario(sc.nextFloat());
+		        cliente.setSalario(sc.nextFloat());
 		        
-		        if(funcionario == null){ 
+		        if(cliente == null){ 
 		            System.out.println("\nFuncionário não cadastrado, campo obrigatório!\n");
 		        } else{
 		            System.out.println("\nFuncionário cadastrado com sucesso!\n");
 		            
-		            if(funcionario.getId() <= 500) 
+		            if(cliente.getId() <= 500) 
 		            {
-	    				System.out.println("ID -->  " +funcionario.getId());
+	    				System.out.println("ID -->  " +cliente.getId());
 	    			}
-		            System.out.println("Nome --> " +funcionario.getNome());
-		            System.out.println("Codigo --> " +funcionario.getCodigo());
-		            System.out.println("CPF --> " +funcionario.getCpf());
-		            System.out.println("Salário --> " +funcionario.getSalario());
+		            System.out.println("Nome --> " +cliente.getNome());
+		            System.out.println("Codigo --> " +cliente.getCodigo());
+		            System.out.println("CPF --> " +cliente.getCpf());
+		            System.out.println("Salário --> " +cliente.getSalario());
 		        }
 		        
 		        System.out.println("\n");
-		        menuFuncionario();
+		        menuCliente();
 		        break;
 	        }
 			
 			case 2:{
-				funcionarios = (ArrayList<Funcionario>) this.findAll();
+				clientes = (ArrayList<Cliente>) this.findAll();
 				
-		    	System.out.println("####  Listar Funcionario  ####");
-		    	if(this.funcionarios != null) {
-		    		funcionarios.forEach((f) -> {
+		    	System.out.println("####  Listar Clientes  ####");
+		    	if(this.clientes != null) {
+		    		clientes.forEach((f) -> {
 		    			if(f.getId() <= 500) {
 		    				System.out.println("ID --> 0"+f.getId());
 		    			}
@@ -104,27 +100,26 @@ public class ClienteView {
 		    	}
 		    	
 		    	System.out.println("\n");
-				menuFuncionario();
+				menuCliente();
 		        break;
 	        }
 			
 			case 3:{
-				System.out.println("####  Buscar Funcionário ####");
+				System.out.println("####  Buscar Cliente ####");
 				Scanner sci = new Scanner(System.in);
 				
-				System.out.println("-->  Informe o ID do funcionario cadastrada:");
-				Funcionario funcionario = new Funcionario();
+				System.out.println("-->  Informe o ID do cliente cadastrado:");
+				Cliente cliente = new Cliente();
 			
 		        int num = sci.nextInt();
-				funcionario = this.findById(num);
-				if(funcionario != null) {
-					if(funcionario.getId() <= 500) {
-	    				System.out.println("\nID --> " + funcionario.getId());
+		        cliente= this.findById(num);
+				if(cliente!= null) {
+					if(cliente.getId() <= 500) {
+	    				System.out.println("\nID --> " + cliente.getId());
 	    			}
-		            System.out.println("Nome --> "+ funcionario.getNome());
-		            System.out.println("Codigo --> " +funcionario.getCodigo());
-		            System.out.println("CPF --> " +funcionario.getCpf());
-		            System.out.println("Salário --> " +funcionario.getSalario());
+		            System.out.println("Nome --> "+ cliente.getNome());
+		            System.out.println("Codigo --> " +cliente.getCodigo());
+		            System.out.println("CPF --> " +cliente.getCpf());
 		            System.out.println("-----------------------");
 		            System.out.println("\n");
 				}
@@ -132,76 +127,66 @@ public class ClienteView {
 					System.out.println("ID não encontrado na base de dados!\n");
 				}
 			
-				menuFuncionario();
+				menuCliente();
 		        break;
 	        }
 			
 			case 4:{
-				System.out.println("####  Alterar Funcionário  ####");
+				System.out.println("####  Alterar Cliente  ####");
 				Scanner sci = new Scanner(System.in);
 				System.out.println("Insira o ID do funcionário:");
 				int num = sci.nextInt();
 				
-		        Funcionario funcionario = this.findById(num);
-		        if(funcionario == null) {
+				Cliente cliente = this.findById(num);
+		        if(cliente == null) {
 		        	System.out.println("Este código não existe!\n");
-		        	this.menuFuncionario();
+		        	this.menuCliente();
 		        }
 		        else {
-		        	System.out.println("==== Alteração de Funcionario ====");
-		        	if(funcionario.getId() <= 500) {
-	    				System.out.println("ID -->  " + funcionario.getId());
+		        	System.out.println("==== Alteração de Clientes ====");
+		        	if(cliente.getId() <= 500) {
+	    				System.out.println("ID -->  " + cliente.getId());
 	    			}
-		            System.out.println("Nome --> " + funcionario.getNome());
-		            System.out.println("Cpf --> " + funcionario.getCpf());
-		            System.out.println("Endereço " + funcionario.getEndereco());
-		            System.out.println("Telefone " + funcionario.getTelefone());
-		            System.out.println("Codigo --> " +funcionario.getCodigo());
-		            System.out.println("Data de nascimento --> " +funcionario.getDt_nascimento());
-		            System.out.println("Código --> " +funcionario.getUsuario());
-		            System.out.println("Senha --> " +funcionario.getSenha());
-		            System.out.println("Salário --> " +funcionario.getSalario());
+		            System.out.println("Nome --> " + cliente.getNome());
+		            System.out.println("Cpf --> " + cliente.getCpf());
+		            System.out.println("Endereço " + cliente.getEndereco());
+		            System.out.println("Telefone " + cliente.getTelefone());
+		            System.out.println("Codigo --> " +cliente.getCodigo());
+		            System.out.println("Data de nascimento --> " +cliente.getDt_nascimento());
+		            System.out.println("Salário --> " +cliente.getSalario());
 		        }
 		        
 		        System.out.println("\nInforme os NOVOS dados do Funcionário:");
 		        
 		        System.out.println("Nome -->");
 		        Scanner nome = new Scanner(System.in);
-		        funcionario.setNome(nome.next());
+		        cliente.setNome(nome.next());
 		        
 		        System.out.println("Cpf -->");
 		        Scanner cpf = new Scanner(System.in);
-		        funcionario.setCpf(cpf.next());
+		        cliente.setCpf(cpf.next());
 		        
 		        System.out.println("Endereco -->");
 		        Scanner endereco = new Scanner(System.in);
-		        funcionario.setEndereco(endereco.next());
+		        cliente.setEndereco(endereco.next());
 		        
 		        System.out.println("Telefone -->");
 		        Scanner telefone = new Scanner(System.in);
-		        funcionario.setTelefone(telefone.next());
+		        cliente.setTelefone(telefone.next());
 		        
 		        System.out.println("Data de nascimento -->");
 		        Scanner dt_nascimento = new Scanner(System.in);
-		        funcionario.setDt_nascimento(dt_nascimento.next());
+		        cliente.setDt_nascimento(dt_nascimento.next());
 		        
 		        System.out.println("Codigo -->");
 		        Scanner codigo = new Scanner(System.in);
-		        funcionario.setCodigo(codigo.nextInt());
+		        cliente.setCodigo(codigo.nextInt());
 		        
 		        System.out.println("Usuario -->");
 		        Scanner usuario = new Scanner(System.in);
-		        funcionario.setCpf(cpf.next());
+		        cliente.setCpf(cpf.next());
 		        
-		        System.out.println("Senha -->");
-		        Scanner senha = new Scanner(System.in);
-		        funcionario.setSenha(senha.next());
-
-		        System.out.println("Salario -->");
-		        Scanner salario = new Scanner(System.in);
-		        funcionario.setSalario(salario.nextFloat());
-		        
-		        boolean resp = this.update(num, funcionario);
+		        boolean resp = this.update(num, cliente);
 		        if(resp == true) {
 		        	System.out.println("Funcionario alterado com sucesso!");
 		        }
@@ -209,21 +194,21 @@ public class ClienteView {
 		        	System.out.println("Registro de Funcionário não encontrado!!");
 		        }
 		        
-		        menuFuncionario();
+		        menuCliente();
 		        break;
 	        }
 			
 			case 5:{
-				System.out.println("####  Excluir Funcionário  ####");
+				System.out.println("####  Excluir Cliente  ####");
 				Scanner c = new Scanner(System.in);
-				System.out.println("Informe o ID do Funcionario:");
+				System.out.println("Informe o ID do Cliente:");
 		        int num = c.nextInt();
 		        boolean resp = this.delete(num);
 		        if(resp == true) {
-		        	System.out.println("Funcionário excluído!!!");
+		        	System.out.println("Cliente excluído!!!");
 		        }
 		        else {
-		        	System.out.println("Funcionário não existente!");
+		        	System.out.println("Cliente não existente!");
 		        }
 		        
 				menuFuncionario();
