@@ -104,7 +104,7 @@ public class FuncionarioModel {
 
 	    public List<Funcionario> findAll(){
 	    	
-	    	String SQL = "SELECT * FROM funcionairo ORDER BY idmarca";
+	    	String SQL = "SELECT * FROM funcionario ORDER BY idmarca";
 	    	
 	    	ArrayList<Funcionario> funcionarios = new ArrayList<Funcionario>();
 	    	int cont = 0;

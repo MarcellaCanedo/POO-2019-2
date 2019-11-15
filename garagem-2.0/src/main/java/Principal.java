@@ -64,6 +64,12 @@ public class Principal {
     			funcionariov.menuFuncionario();
     			menuPrincipal();
     		}
+    		
+    		case 3: {
+    			ClienteView clientev = new ClienteView();
+    			clientev.menuCliente();
+    			menuPrincipal();
+    		}
     	
     		
     		case 0: default:{

@@ -3,10 +3,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import controller.FuncionarioController;
-import controller.MarcaController;
 import entity.Funcionario;
-import entity.Marca;
-import entity.Modelo;
 
 public class FuncionarioView{
 	
@@ -38,31 +35,33 @@ public class FuncionarioView{
 				Funcionario funcionario = new Funcionario();
 				Scanner f = new Scanner(System.in);
 				
-		        System.out.println("\n-->  Digite o nome da Funcionario:");
-		        funcionario.setNome(sc.nextLine());
+				 System.out.println("\n###  Cadastro de Funcionário  ###");
+				
+		        System.out.println("\nNome --> ");
+		        funcionario.setNome(sc.next());
 
-		        System.out.println("\n--> CPF: ");
-		        funcionario.setCpf(sc.nextLine());
+		        System.out.println("\nCPF --> ");
+		        funcionario.setCpf(sc.next());
 		        
-		        System.out.println("\n-->  Endereço: ");
-		        funcionario.setEndereco(sc.nextLine());
+		        System.out.println("\nEndereço --> ");
+		        funcionario.setEndereco(sc.next());
 		        
-		        System.out.println("\n-->  Telefone: ");
-		        funcionario.setTelefone(sc.nextLine());
+		        System.out.println("\nTelefone --> ");
+		        funcionario.setTelefone(sc.next());
 
-		        System.out.println("\n-->  Data de nascimento: ");
-		        funcionario.setDt_nascimento(sc.nextLine());
+		        System.out.println("\nData de nascimento --> ");
+		        funcionario.setDt_nascimento(sc.next());
 		        
-		        System.out.println("\n-->  Código: ");
+		        System.out.println("\nCódigo --> ");
 		        funcionario.setCodigo(sc.nextInt());
 		        
-		        System.out.println("\n-->  Usuário: ");
-		        funcionario.setUsuario(sc.nextLine());
+		        System.out.println("\nUsuário --> ");
+		        funcionario.setUsuario(sc.next());
 		        
-		        System.out.println("\n-->  Senha: ");
-		        funcionario.setSenha(sc.nextLine());
+		        System.out.println("\nSenha --> ");
+		        funcionario.setSenha(sc.next());
     
-		        System.out.println("\n-->  Salário: ");
+		        System.out.println("\nSalário --> ");
 		        funcionario.setSalario(sc.nextFloat());
 		        
 		        if(funcionario == null){ 
