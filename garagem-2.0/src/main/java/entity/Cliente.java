@@ -79,5 +79,9 @@ public class Cliente {
 	public void add(Cliente c) {
 		
 	}
+
+	public static Cliente enviaObjeto(String codigoCliente) {
+		return null;
+	}
 	
 }

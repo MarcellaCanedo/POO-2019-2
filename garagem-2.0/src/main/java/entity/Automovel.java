@@ -77,5 +77,9 @@ public class Automovel {
 		public void setValor(float valor) {
 			this.valor = valor;
 		}
+
+		public static Automovel enviaObjeto(String placa2) {
+			return null;
+		}
 	    
 }

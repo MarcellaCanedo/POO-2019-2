@@ -39,4 +39,8 @@ public class AutomovelController {
 		return null;
 	}
 
+	public boolean verifica(String placa) {
+		return false;
+	}
+
 }

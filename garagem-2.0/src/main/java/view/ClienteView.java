@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Scanner;
 
 import controller.ClienteController;
-import controller.FuncionarioController;
 import entity.Cliente;
 
 public class ClienteView {
@@ -211,7 +210,7 @@ public class ClienteView {
 		        	System.out.println("Cliente não existente!");
 		        }
 		        
-				menuFuncionario();
+				menuCliente();
 		        break;
 	        }
 			
@@ -223,25 +222,29 @@ public class ClienteView {
     }
 
 
-    public Funcionario save(Funcionario funcionario1){
-    	return funcionarioController.save(funcionario1);
+    public Cliente save(Cliente cliente){
+    	return clienteController.save(cliente);
     }
 
-    public boolean update(int id, Funcionario funcionario){
-        return funcionarioController.update(id, funcionario);
+    public boolean update(int id, Cliente cliente){
+        return clienteController.update(id, cliente);
     }
 
     public boolean delete(int id){
-    	return funcionarioController.delete(id);
+    	return clienteController.delete(id);
     }
 
-    public List<Funcionario> findAll(){
-    	return funcionarioController.findAll();
+    public List<Cliente> findAll(){
+    	return clienteController.findAll();
     }
 
-    public Funcionario findById(int id){
-    	FuncionarioController funcionarioController = null;
-		return funcionarioController.findById(id);
+    public Cliente findById(int id){
+    	ClienteController clienteController = null;
+		return clienteController.findById(id);
     }
+
+	public static boolean verificaLista(String codigoCliente) {
+		return false;
+	}
 	
 }

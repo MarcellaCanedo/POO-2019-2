@@ -102,4 +102,14 @@ public class Funcionario {
 			// TODO Auto-generated method stub
 			
 		}
+
+		public static boolean verificaLista(String codigoFuncionario) {
+			// TODO Auto-generated method stub
+			return false;
+		}
+
+		public static Funcionario enviaObjeto(String codigoFuncionario) {
+			// TODO Auto-generated method stub
+			return null;
+		}
 }

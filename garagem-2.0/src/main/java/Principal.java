@@ -1,4 +1,5 @@
 import view.AutomovelView;
+import view.ClienteView;
 import view.FuncionarioView;
 import view.MarcaView;
 import view.ModeloView;
@@ -33,6 +34,7 @@ public class Principal {
     			System.out.println("1 - Marca");
     	    	System.out.println("2 - Modelo");
     	    	System.out.println("3 - Veículos");
+    	    	System.out.println("4 - Vendas");
     	    	Scanner nsc = new Scanner(System.in);
     	    	opp = sc.nextInt();
     	    	
@@ -65,12 +67,17 @@ public class Principal {
     			menuPrincipal();
     		}
     		
-    		/*case 3: {
+    		case 3: {
     			ClienteView clientev = new ClienteView();
     			clientev.menuCliente();
     			menuPrincipal();
-    		}*/
+    		}
     	
+    		case 4:{
+    			
+    			
+    		}
+    		
     		
     		case 0: default:{
     			System.exit(0);
