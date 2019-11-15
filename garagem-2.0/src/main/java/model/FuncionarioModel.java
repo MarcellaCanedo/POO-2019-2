@@ -83,7 +83,7 @@ public class FuncionarioModel {
 
 	    public boolean delete(int id){
 	    	
-	    	String SQL = "DELETE FROM marca WHERE id = ?";
+	    	String SQL = "DELETE FROM funcionario WHERE id = ?";
 	    	
 	    	try {
 		    	PreparedStatement ps = connection.prepareStatement(SQL);
