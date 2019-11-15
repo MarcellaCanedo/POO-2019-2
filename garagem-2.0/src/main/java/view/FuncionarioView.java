@@ -153,39 +153,81 @@ public class FuncionarioView{
 		        	if(funcionario.getId() <= 500) {
 	    				System.out.println("ID -->  " + funcionario.getId());
 	    			}
-		            System.out.println("NOME - " + funcionario.getNome());
+		            System.out.println("Nome --> " + funcionario.getNome());
+		            System.out.println("Cpf --> " + funcionario.getCpf());
+		            System.out.println("Endereço " + funcionario.getEndereco());
+		            System.out.println("Telefone " + funcionario.getTelefone());
+		            System.out.println("Codigo --> " +funcionario.getCodigo());
+		            System.out.println("Data de nascimento --> " +funcionario.getDt_nascimento());
+		            System.out.println("Código --> " +funcionario.getUsuario());
+		            System.out.println("Senha --> " +funcionario.getSenha());
+		            System.out.println("Salário --> " +funcionario.getSalario());
 		        }
 		        
-		        System.out.println("\nInforme o novo nome da Marca:");
+		        System.out.println("\nInforme os NOVOS dados do Funcionário:");
+		        
+		        System.out.println("Nome -->");
 		        Scanner nome = new Scanner(System.in);
-		        marca.setNome(nome.next());
+		        funcionario.setNome(nome.next());
+		        
+		        System.out.println("Cpf -->");
+		        Scanner cpf = new Scanner(System.in);
+		        funcionario.setCpf(cpf.next());
+		        
+		        System.out.println("Endereco -->");
+		        Scanner endereco = new Scanner(System.in);
+		        funcionario.setEndereco(endereco.next());
+		        
+		        System.out.println("Telefone -->");
+		        Scanner telefone = new Scanner(System.in);
+		        funcionario.setTelefone(telefone.next());
+		        
+		        System.out.println("Data de nascimento -->");
+		        Scanner dt_nascimento = new Scanner(System.in);
+		        funcionario.setDt_nascimento(dt_nascimento.next());
+		        
+		        System.out.println("Codigo -->");
+		        Scanner codigo = new Scanner(System.in);
+		        funcionario.setCodigo(codigo.nextInt());
+		        
+		        System.out.println("Usuario -->");
+		        Scanner usuario = new Scanner(System.in);
+		        funcionario.setCpf(cpf.next());
+		        
+		        System.out.println("Senha -->");
+		        Scanner senha = new Scanner(System.in);
+		        funcionario.setSenha(senha.next());
 
-		        boolean resp = this.update(num, marca);
+		        System.out.println("Salario -->");
+		        Scanner salario = new Scanner(System.in);
+		        funcionario.setSalario(salario.nextFloat());
+		        
+		        boolean resp = this.update(num, funcionario);
 		        if(resp == true) {
-		        	System.out.println("Marca Alterada com sucesso!");
+		        	System.out.println("Funcionario alterado com sucesso!");
 		        }
 		        else {
-		        	System.out.println("Marca não existente!!");
+		        	System.out.println("Registro de Funcionário não encontrado!!");
 		        }
 		        
-		        menuMarca();
+		        menuFuncionario();
 		        break;
 	        }
 			
 			case 5:{
-				System.out.println("####  Excluir Marca  ####");
+				System.out.println("####  Excluir Funcionário  ####");
 				Scanner c = new Scanner(System.in);
-				System.out.println("Informe o ID da marca:");
+				System.out.println("Informe o ID do Funcionario:");
 		        int num = c.nextInt();
 		        boolean resp = this.delete(num);
 		        if(resp == true) {
-		        	System.out.println("Marca excluída!!!");
+		        	System.out.println("Funcionário excluído!!!");
 		        }
 		        else {
-		        	System.out.println("Marca não existente!");
+		        	System.out.println("Funcionário não existente!");
 		        }
 		        
-				menuMarca();
+				menuFuncionario();
 		        break;
 	        }
 			
@@ -201,8 +243,8 @@ public class FuncionarioView{
     	return funcionarioController.save(funcionario1);
     }
 
-    public boolean update(int id, Marca m){
-        return funcionarioController.update(id, m);
+    public boolean update(int id, Funcionario funcionario){
+        return funcionarioController.update(id, funcionario);
     }
 
     public boolean delete(int id){
@@ -214,6 +256,7 @@ public class FuncionarioView{
     }
 
     public Funcionario findById(int id){
-    	return funcionairoController.findById(id);
+    	FuncionarioController funcionarioController = null;
+		return funcionarioController.findById(id);
     }
 }
