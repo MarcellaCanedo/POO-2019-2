@@ -3,6 +3,8 @@ import view.ClienteView;
 import view.FuncionarioView;
 import view.MarcaView;
 import view.ModeloView;
+import view.VendaView;
+
 import java.util.Scanner;
 
 public class Principal {
@@ -22,6 +24,7 @@ public class Principal {
     	System.out.println("2 - Funcionário");
     	System.out.println("3 - Cliente");
     	System.out.println("4 - Vendas");
+    	System.out.println("5 - Relatorio");
     	System.out.println("0 - Sair");
     	
     	Scanner sc = new Scanner(System.in);
@@ -74,10 +77,17 @@ public class Principal {
     		}
     	
     		case 4:{
-    			
-    			
+    			VendaView vendav = new VendaView();
+    			vendav.menuVenda();
+    			menuPrincipal();
     		}
     		
+    		/*case 5:{
+    		 RelatorioView relatoriov = new RelatorioView
+    		 relatoriov.menuRelatorio();
+    		 menuPrincipal();
+    		 }
+    		 */
     		
     		case 0: default:{
     			System.exit(0);

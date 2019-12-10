@@ -22,10 +22,10 @@ import java.util.Scanner;
 	        this.sc = new Scanner(System.in); }
 
 	    public void menuVenda(){
-	        System.out.println("# Realizar Venda");
-	        System.out.println("01 - Realizar Venda");
-	        System.out.println("02 - Cancelar Venda");
-	        System.out.println("03 - Listar Vendas");
+	        System.out.println("\n ### Realizar Venda ### ");
+	        System.out.println("1 - Realizar Venda");
+	        System.out.println("2 - Cancelar Venda");
+	        System.out.println("3 - Listar Vendas");
 	        System.out.println("0  - Sair");
 	        Scanner sc = new Scanner(System.in);
 	        int op = sc.nextInt();
@@ -62,11 +62,11 @@ import java.util.Scanner;
 
 	        boolean dadosPrimarios = false;
 	        Scanner sc = new Scanner(System.in);
-	        System.out.println("Placa do veículo");
+	        System.out.println(" --> Placa do veículo ");
 	        String placa = sc.nextLine();
-	        System.out.println("Código do cliente");
+	        System.out.println(" --> Código do cliente ");
 	        String codigoCliente = sc.nextLine();
-	        System.out.println("Código do funcionário");
+	        System.out.println(" --> Código do funcionário ");
 	        String codigoFuncionario = sc.nextLine();
 
 	      if (automovelController.verifica(placa)){
