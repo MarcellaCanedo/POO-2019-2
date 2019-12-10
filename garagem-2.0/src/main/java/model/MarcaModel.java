@@ -69,7 +69,7 @@ public class MarcaModel {
 
     public boolean delete(int id){
     	
-    	String SQL = "DELETE FROM marca WHERE id = ?";
+    	String SQL = "DELETE FROM garagem.marca WHERE idmarca = ?";
     	
     	try {
 	    	PreparedStatement ps = connection.prepareStatement(SQL);

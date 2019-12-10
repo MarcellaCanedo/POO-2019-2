@@ -58,7 +58,6 @@ public class ModeloModel {
         } catch (Exception e){
             System.out.println(e.getMessage());
         }
-        System.out.println(" AQUI 2");
         return null;
     }
 
@@ -88,7 +87,7 @@ public class ModeloModel {
 
     public boolean delete(int id){
     	
-    	String SQL = "DELETE FROM modelo WHERE idmodelo = ?";
+    	String SQL = "DELETE FROM garagem.modelo WHERE idmodelo = ?";
     	
     	try {
 	    	PreparedStatement ps = connection.prepareStatement(SQL);
@@ -109,7 +108,7 @@ public class ModeloModel {
 
     public List<Modelo> findAll(){
     	
-    	String SQL = "SELECT * FROM modelo ORDER BY idmodelo";
+    	String SQL = "SELECT * FROM garagem.modelo ORDER BY idmodelo";
     	
     	ArrayList<Modelo> Modelos = new ArrayList<Modelo>();
     	int cont = 0;
@@ -122,15 +121,16 @@ public class ModeloModel {
 	    	while(rs.next())
 	    	{
 	    	    Modelo modelo = new Modelo();
-	    	    modelo.setId(rs.getInt("id"));
+	    	    modelo.setId(rs.getInt("idmarca"));
 	    	    modelo.setNome(rs.getString("nome"));
 	    	    modelo.setTipo(rs.getString("tipo"));
-	    	    int i = rs.getInt("marca");
+	    	    int i = rs.getInt("modelo");
                 Marca marca = new Marca();
                 marca = this.selectMarca(i);
                 modelo.setMarca(marca);
 	    	    
 	    	    Modelos.add(modelo);
+	    	    cont = 0;
 	    	    cont++;
 	    	}
 
@@ -144,7 +144,7 @@ public class ModeloModel {
     }
 
     public Modelo findById(int id){
-    	String SQL = "SELECT * FROM Modelo WHERE idmodelo = ?";
+    	String SQL = "SELECT * FROM garagem.modelo WHERE idmodelo = ?";
     	
     	try {
     		PreparedStatement ps = connection.prepareStatement(SQL);
@@ -173,7 +173,7 @@ public class ModeloModel {
     }
 
 	public Marca selectMarca(int id) {
-		String SQL = "SELECT * FROM marca WHERE idmodelo = ?";
+		String SQL = "SELECT * FROM garagem.marca WHERE idmarca = ?";
     	
     	try {
     		PreparedStatement ps = connection.prepareStatement(SQL);
@@ -183,7 +183,7 @@ public class ModeloModel {
 	    	
 	    	if(rs.next()) {
 		    	Marca m = new Marca();
-	    	    m.setId(rs.getInt("idmodelo"));
+	    	    m.setId(rs.getInt("idmarca"));
 	    	    m.setNome(rs.getString("nome"));
 	    	    return m;
 	    	}else {
